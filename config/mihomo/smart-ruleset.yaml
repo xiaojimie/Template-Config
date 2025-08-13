@@ -292,8 +292,8 @@ rule-providers:
   custom_direct_class:
     <<: *class
     path: ./rules/custom_direct_class.list
-    url: "https://raw.githubusercontent.com/xiaojimie/Template-Config/main/custom_direct.list"
+    url: "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_direct.list"
   custom_proxy_class:
     <<: *class
     path: ./rules/custom_proxy_class.list
-    url: "https://raw.githubusercontent.com/xiaojimie/Template-Config/main/custom_proxy.list"
+    url: "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_proxy.list"
