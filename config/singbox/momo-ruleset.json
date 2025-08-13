@@ -2,7 +2,7 @@
   "dns": {
     "servers": [
       {"tag": "domestic", "type": "udp", "server": "223.5.5.5"},
-      {"tag": "foreign", "type": "https", "server": "8.8.8.8"}111
+      {"tag": "foreign", "type": "https", "server": "8.8.8.8"}
     ],
     "rules": [
       {"query_type": "HTTPS", "action": "reject"},
