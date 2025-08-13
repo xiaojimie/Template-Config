@@ -9,8 +9,7 @@
       {"clash_mode": "direct", "server": "domestic"},
       {"clash_mode": "global", "server": "foreign"},
       {"rule_set": ["ads_domain"], "action": "predefined", "rcode": "NOERROR"},
-      {"rule_set": ["private_domain", "steam@cn_domain", "games-cn_domain", "game-platforms-download_domain", "entertainment-cn_domain", "public-tracker_domain", "apple_domain", "microsoft@cn_domain"，"cn_domain"], "server": "domestic"}
-    ],
+      {"rule_set": ["private_domain", "steam@cn_domain", "games-cn_domain", "game-platforms-download_domain", "entertainment-cn_domain", "public-tracker_domain", "apple_domain", "microsoft@cn_domain"， "cn_domain"], "server": "domestic"}
     "final": "foreign",
     "strategy": "prefer_ipv6",
     "independent_cache": true,
