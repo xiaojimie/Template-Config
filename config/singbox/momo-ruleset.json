@@ -3,13 +3,12 @@
     "servers": [
       {"tag": "domestic", "type": "udp", "server": "223.5.5.5"},
       {"tag": "foreign", "type": "https", "server": "8.8.8.8"},
-      {"tag": "adblock", "action": "predefined", "rcode": "NOERROR"}
     ],
     "rules": [
       {"query_type": "HTTPS", "action": "reject"},
       {"clash_mode": "direct", "server": "domestic"},
       {"clash_mode": "global", "server": "foreign"},
-      {"rule_set": ["ads_domain"], "server": "adblock"},
+      {"rule_set": ["ads_domain"], "action": "predefined", "rcode": "NOERROR"},
       {"rule_set": ["private_domain", "custom_direct_class", "steam@cn_domain", "games-cn_domain", "game-platforms-download_domain", "entertainment-cn_domain", "public-tracker_domain", "apple_domain", "microsoft@cn_domain", "cn_domain"], "server": "domestic"}
     ],
     "final": "foreign",
