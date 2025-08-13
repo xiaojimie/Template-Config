@@ -39,7 +39,7 @@
     {"tag": "新加坡", "type": "selector", "outbounds": ["{all}"], "filter": [{"action": "include", "keywords": ["新加坡"]}]},
     {"tag": "日本", "type": "selector", "outbounds": ["{all}"], "filter": [{"action": "include", "keywords": ["日本"]}]},
     {"tag": "美国", "type": "selector", "outbounds": ["{all}"], "filter": [{"action": "include", "keywords": ["美国"]}]},
-    {"tag": "GLOBAL", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "直连"]},
+    {"tag": "GLOBAL", "type": "selector", "outbounds": ["香港"， "台湾", "新加坡", "日本", "美国", "直连"]},
     {"tag": "直连", "type": "direct"},
     {"tag": "拒连", "type": "reject"}
   ],
@@ -142,24 +142,12 @@
       "type": "http",
       "listen": "::",
       "listen_port": 8080
-      "users": [
-        {
-          "username": "user",
-          "password": "password"
-        }
-      ]
     },
     {
       "tag": "socks-in",
       "type": "socks",
       "listen": "::",
       "listen_port": 10808
-      "users": [
-        {
-          "username": "user",
-          "password": "password"
-        }
-      ]
     },
     {
       "tag": "redirect-in",
