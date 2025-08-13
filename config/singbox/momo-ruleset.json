@@ -123,8 +123,8 @@
       {"tag": "cloudflare_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cloudflare.srs"},
       {"tag": "jp_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/jp.srs"},
       {"tag": "cn_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs"},
-      {"tag": "custom_direct_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/main/custom_direct.json"},
-      {"tag": "custom_proxy_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/main/custom_proxy.json"}
+      {"tag": "custom_direct_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_direct.json"},
+      {"tag": "custom_proxy_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_proxy.json"}
     ],
     "final": "兜底",
     "default_domain_resolver": {"server": "domestic"}
