@@ -51,8 +51,6 @@
       {"clash_mode": "global", "outbound": "GLOBAL"},
       {"rule_set": "ads_domain", "outbound": "拒连"},
       {"rule_set": "private_domain", "outbound": "直连"},
-      {"rule_set": "custom_direct_class", "outbound": "国内网站"},
-      {"rule_set": "custom_proxy_class", "outbound": "国外代理"},
       {"rule_set": "steam@cn_domain", "outbound": "国内网站"},
       {"rule_set": "games-cn_domain", "outbound": "国内网站"},
       {"rule_set": "game-platforms-download_domain", "outbound": "国内网站"},
@@ -122,9 +120,7 @@
       {"tag": "google_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs"},
       {"tag": "cloudflare_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cloudflare.srs"},
       {"tag": "jp_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/jp.srs"},
-      {"tag": "cn_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs"},
-      {"tag": "custom_direct_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_direct.json"},
-      {"tag": "custom_proxy_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_proxy.json"}
+      {"tag": "cn_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs"}
     ],
     "final": "兜底",
     "default_domain_resolver": {"server": "domestic"}
