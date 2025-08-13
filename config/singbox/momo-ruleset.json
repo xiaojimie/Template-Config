@@ -2,7 +2,7 @@
   "dns": {
     "servers": [
       {"tag": "domestic", "type": "udp", "server": "223.5.5.5"},
-      {"tag": "foreign", "type": "https", "server": "8.8.8.8"}
+      {"tag": "foreign", "type": "https", "server": "8.8.8.8"},
       {"tag": "privatehost", "type": "https", "server": "127.0.0.1"}
     ],
     "rules": [
@@ -40,7 +40,7 @@
     {"tag": "台湾", "type": "selector", "outbounds": ["{all}"], "filter": [{"action": "include", "keywords": ["台湾"]}]},
     {"tag": "新加坡", "type": "selector", "outbounds": ["{all}"], "filter": [{"action": "include", "keywords": ["新加坡"]}]},
     {"tag": "日本", "type": "selector", "outbounds": ["{all}"], "filter": [{"action": "include", "keywords": ["日本"]}]},
-    {"tag": "美国", "type": "selector", "outbounds": ["{all}"], "filter": [{"action": "include", "keywords": ["美国"]}]},
+    {"tag": "美国", "type": "selector", "outbounds": ["{all}"]， "filter": [{"action": "include", "keywords": ["美国"]}]},
     {"tag": "GLOBAL", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "直连"]},
     {"tag": "直连", "type": "direct"}，
     {"tag": "拒连", "type": "block"}
