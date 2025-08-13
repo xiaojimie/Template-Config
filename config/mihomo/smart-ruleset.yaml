@@ -1,0 +1,299 @@
+proxy-providers-anchor:
+  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 0, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 600}}
+# 必须填入订阅链接
+proxy-providers:
+  Airport1:
+    <<: *PProviders
+    url: "订阅链接"
+    path: ./proxies/Airport1.yaml
+global-ua: clash.meta
+mode: rule
+mixed-port: 7890
+redir-port: 7891
+tproxy-port: 7892
+socks-port: 1080
+allow-lan: true
+bind-address: "*"
+ipv6: true
+unified-delay: true
+tcp-concurrent: true
+log-level: error
+find-process-mode: "off"
+global-client-fingerprint: chrome
+keep-alive-idle: 600
+keep-alive-interval: 15
+disable-keep-alive: false
+# 必须修改http/s5鉴权
+authentication:
+  - "user:password"
+profile:
+  store-selected: true
+external-controller: 0.0.0.0:9090
+# 必须修改外部控制鉴权
+secret: "password"
+tun:
+  enable: false
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "dlg.io.mi.com"
+    - "+.iot.mi.com"
+    - "+.apple.com"
+    - "+.wechat.com"
+    - "+.qpic.cn"
+    - "+.qq.com"
+    - "+.wechatapp.com"
+    - "+.vivox.com"
+# 国内DNS建议填入运营商自动分配的DNS服务器
+# 国外DNS在ecs段填入运营商自动分配的DNS服务器
+dns-groups-anchor:
+  gndns: &gndns
+    - "223.5.5.5"
+    - "119.29.29.29"
+  gwdns: &gwdns
+    - "https://8.8.8.8/dns-query#香港&ecs=运营商DNS/24&ecs-override=true"
+    - "https://1.1.1.1/dns-query#香港&ecs=运营商DNS/24&ecs-override=true"
+dns:
+  enable: true
+  cache-algorithm: arc
+  listen: 0.0.0.0:1053
+  ipv6: true
+  enhanced-mode: redir-host
+  proxy-server-nameserver: *gndns
+  nameserver: *gwdns
+  nameserver-policy:
+    "rule-set:ads_domain": rcode://success
+    "rule-set:private_domain,custom_direct_class,steam@cn_domain,games-cn_domain,game-platforms-download_domain,entertainment-cn_domain,public-tracker_domain,apple_domain,microsoft@cn_domain,cn_domain": *gndns
+proxy-groups-anchor:
+  gwpr: &gwpr {type: select, proxies: [香港, 台湾, 新加坡, 日本, 美国, 直连]}
+  gnpr: &gnpr {type: select, proxies: [直连, 香港, 台湾, 新加坡, 日本, 美国]}
+  smgp: &smgp {type: smart, uselightgbm: true, collectdata: true, strategy: sticky-sessions, sample-rate: 1}
+proxy-groups:
+  - {name: 国内网站, <<: *gnpr, url: "https://www.gstatic.com/generate_204", interval: 600}
+  - {name: 国外代理, <<: *gwpr}
+  - {name: 通讯, <<: *gwpr}
+  - {name: 社媒, <<: *gwpr}
+  - {name: AI, <<: *gwpr}
+  - {name: GitHub, <<: *gwpr}
+  - {name: 油管, <<: *gwpr}
+  - {name: 谷歌, <<: *gwpr}
+  - {name: Cloudflare, <<: *gwpr}
+  - {name: 游戏平台, <<: *gwpr}
+  - {name: Iwara, <<: *gwpr}
+  - {name: 特殊解锁, <<: *gwpr}
+  - {name: 日区网站, <<: *gwpr}
+  - {name: 涩涩, <<: *gwpr}
+  - {name: 流媒体, <<: *gwpr}
+  - {name: 兜底, <<: *gwpr}
+  - {name: 其他端口, <<: *gnpr}
+  - {name: 香港, <<: *smgp, include-all-providers: true, filter: "(?i)(香港)"}
+  - {name: 台湾, <<: *smgp, include-all-providers: true, filter: "(?i)(台湾)"}
+  - {name: 新加坡, <<: *smgp, include-all-providers: true, filter: "(?i)(新加坡)"}
+  - {name: 日本, <<: *smgp, include-all-providers: true, filter: "(?i)(日本)"}
+  - {name: 美国, <<: *smgp, include-all-providers: true, filter: "(?i)(美国)"}
+  - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://www.apple.com/library/test/success.html", interval: 600}
+  - {name: 拒连, type: select, proxies: [REJECT], hidden: true}
+rules:
+  - RULE-SET,ads_domain,拒连
+  - RULE-SET,private_domain,直连
+  - RULE-SET,custom_direct_class,国内网站
+  - RULE-SET,custom_proxy_class,国外代理
+  - RULE-SET,steam@cn_domain,国内网站
+  - RULE-SET,games-cn_domain,国内网站
+  - RULE-SET,game-platforms-download_domain,国内网站
+  - RULE-SET,entertainment-cn_domain,国内网站
+  - RULE-SET,public-tracker_domain,国内网站
+  - RULE-SET,apple_domain,国内网站
+  - RULE-SET,microsoft@cn_domain,国内网站
+  - RULE-SET,communication_domain,通讯
+  - RULE-SET,social-media-!cn_domain,社媒
+  - RULE-SET,ai-!cn_domain,AI
+  - RULE-SET,github_domain,GitHub
+  - RULE-SET,youtube_domain,油管
+  - RULE-SET,google_domain,谷歌
+  - RULE-SET,cloudflare_domain,Cloudflare
+  - RULE-SET,games-!cn_domain,游戏平台
+  - DOMAIN-KEYWORD,iwara,Iwara
+  - DOMAIN-KEYWORD,saucenao,特殊解锁
+  - DOMAIN-KEYWORD,sankakucomplex,特殊解锁
+  - RULE-SET,mega_domain,特殊解锁
+  - RULE-SET,ehentai_domain,特殊解锁
+  - RULE-SET,pixiv_domain,日区网站
+  - RULE-SET,dmm_domain,日区网站
+  - RULE-SET,dlsite_domain,日区网站
+  - RULE-SET,porn_domain,涩涩
+  - DOMAIN-KEYWORD,emby,流媒体
+  - RULE-SET,emby_domain,流媒体
+  - RULE-SET,entertainment_domain,流媒体
+  - RULE-SET,gfw_domain,国外代理
+  - RULE-SET,geolocation-!cn_domain,国外代理
+  - RULE-SET,cn_domain,国内网站
+  - RULE-SET,private_ip,直连,no-resolve
+  - RULE-SET,telegram_ip,通讯,no-resolve
+  - RULE-SET,google_ip,谷歌,no-resolve
+  - RULE-SET,cloudflare_ip,Cloudflare,no-resolve
+  - RULE-SET,jp_ip,日区网站
+  - RULE-SET,cn_ip,国内网站
+  - DST-PORT,53/853/80/443/8080-8880,兜底
+  - MATCH,其他端口
+rule-providers-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+rule-providers:
+  ads_domain:
+    <<: *domain
+    path: ./rules/ads_domain.mrs
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs"
+  private_domain:
+    <<: *domain
+    path: ./rules/private_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"
+  steam@cn_domain:
+    <<: *domain
+    path: ./rules/steam@cn_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.mrs"
+  games-cn_domain:
+    <<: *domain
+    path: ./rules/games-cn_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games-cn.mrs"
+  game-platforms-download_domain:
+    <<: *domain
+    path: ./rules/game-platforms-download_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-game-platforms-download.mrs"
+  entertainment-cn_domain:
+    <<: *domain
+    path: ./rules/entertainment-cn_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-entertainment-cn.mrs"
+  public-tracker_domain:
+    <<: *domain
+    path: ./rules/public-tracker_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-public-tracker.mrs"
+  apple_domain:
+    <<: *domain
+    path: ./rules/apple_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"
+  microsoft@cn_domain:
+    <<: *domain
+    path: ./rules/microsoft@cn_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@cn.mrs"
+  communication_domain:
+    <<: *domain
+    path: ./rules/communication_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-communication.mrs"
+  social-media-!cn_domain:
+    <<: *domain
+    path: ./rules/social-media-!cn_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-social-media-!cn.mrs"
+  ai-!cn_domain:
+    <<: *domain
+    path: ./rules/ai-!cn_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs"
+  github_domain:
+    <<: *domain
+    path: ./rules/github_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"
+  youtube_domain:
+    <<: *domain
+    path: ./rules/youtube_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"
+  google_domain:
+    <<: *domain
+    path: ./rules/google_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"
+  cloudflare_domain:
+    <<: *domain
+    path: ./rules/cloudflare_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs"
+  games-!cn_domain:
+    <<: *domain
+    path: ./rules/games-!cn_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-games-!cn.mrs"
+  mega_domain:
+    <<: *domain
+    path: ./rules/mega_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/mega.mrs"
+  ehentai_domain:
+    <<: *domain
+    path: ./rules/ehentai_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ehentai.mrs"
+  pixiv_domain:
+    <<: *domain
+    path: ./rules/pixiv_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pixiv.mrs"
+  dmm_domain:
+    <<: *domain
+    path: ./rules/dmm_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/dmm.mrs"
+  dlsite_domain:
+    <<: *domain
+    path: ./rules/dlsite_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/dlsite.mrs"
+  porn_domain:
+    <<: *domain
+    path: ./rules/porn_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-porn.mrs"
+  emby_domain:
+    <<: *domain
+    path: ./rules/emby_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-emby.mrs"
+  entertainment_domain:
+    <<: *domain
+    path: ./rules/entertainment_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-entertainment.mrs"
+  gfw_domain:
+    <<: *domain
+    path: ./rules/gfw_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"
+  geolocation-!cn_domain:
+    <<: *domain
+    path: ./rules/geolocation-!cn_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"
+  cn_domain:
+    <<: *domain
+    path: ./rules/cn_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"
+  private_ip:
+    <<: *ip
+    path: ./rules/private_ip.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"
+  telegram_ip:
+    <<: *ip
+    path: ./rules/telegram_ip.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"
+  google_ip:
+    <<: *ip
+    path: ./rules/google_ip.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"
+  cloudflare_ip:
+    <<: *ip
+    path: ./rules/cloudflare_ip.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs"
+  jp_ip:
+    <<: *ip
+    path: ./rules/jp_ip.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/jp.mrs"
+  cn_ip:
+    <<: *ip
+    path: ./rules/cn_ip.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"
+  custom_direct_class:
+    <<: *class
+    path: ./rules/custom_direct_class.list
+    url: "https://raw.githubusercontent.com/xiaojimie/Template-Config/main/custom_direct.list"
+  custom_proxy_class:
+    <<: *class
+    path: ./rules/custom_proxy_class.list
+    url: "https://raw.githubusercontent.com/xiaojimie/Template-Config/main/custom_proxy.list"
