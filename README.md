@@ -2,6 +2,10 @@
 
 自用Mihomo、Singbox配置文件及分流规则，不提供Fake-ip配置  
 
+[Mihomo配置](https://github.com/xiaojimie/Template-Config/blob/main/config/mihomo/smart-ruleset.yaml)  
+
+[Singbox配置](https://github.com/xiaojimie/Template-Config/blob/main/config/singbox/momo-ruleset.json)  
+
 # Mihomo-Config  
 
 仅支持[smart内核](https://github.com/vernesong/mihomo/releases)使用  
