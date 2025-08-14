@@ -1,6 +1,6 @@
 # Template-Config  
 
-自用Mihomo、Singbox配置文件及分流规则  
+自用Mihomo、Singbox配置文件及分流规则，不提供Fake-ip配置  
 
 # Mihomo-Config  
 
