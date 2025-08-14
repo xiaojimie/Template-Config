@@ -74,6 +74,8 @@ dns:
   proxy-server-nameserver: *gndns
   nameserver: *gwdns
   nameserver-policy:
+    "+.lan": "127.0.0.1"
+    "+.arpa": "127.0.0.1"
     "rule-set:private_domain": *gndns
     "rule-set:custom_direct_class": *gndns
     "rule-set:steam@cn_domain": *gndns
