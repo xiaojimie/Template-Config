@@ -2,7 +2,7 @@
   "dns": {
     "servers": [
       {"tag": "domestic", "type": "udp", "server": "223.5.5.5"},
-      {"tag": "foreign", "type": "https", "server": "8.8.8.8", "detour": "香港"},
+      {"tag": "foreign", "type": "https", "server": "8.8.8.8", "detour": "香港", "client_subnet": "1.1.1.1"},
       {"tag": "privatehost", "type": "udp", "server": "127.0.0.1"}
     ],
     "rules": [
@@ -11,11 +11,18 @@
       {"clash_mode": "global", "server": "foreign"},
       {"domain_suffix": ".lan", "server": "privatehost"},
       {"domain_suffix": ".arpa", "server": "privatehost"},
-      {"rule_set": ["ads_domain"], "action": "predefined", "rcode": "NOERROR"},
-      {"rule_set": ["private_domain", "steam@cn_domain", "games-cn_domain", "game-platforms-download_domain", "entertainment-cn_domain", "public-tracker_domain", "apple_domain", "microsoft@cn_domain", "cn_domain"], "server": "domestic"}
+      {"rule_set": ["private_domain"], "server": "domestic"},
+      {"rule_set": ["custom_direct_class"], "server": "domestic"},
+      {"rule_set": ["steam@cn_domain"], "server": "domestic"},
+      {"rule_set": ["games-cn_domain"], "server": "domestic"},
+      {"rule_set": ["game-platforms-download_domain"], "server": "domestic"},
+      {"rule_set": ["entertainment-cn_domain"], "server": "domestic"},
+      {"rule_set": ["public-tracker_domain"], "server": "domestic"},
+      {"rule_set": ["apple_domain"], "server": "domestic"},
+      {"rule_set": ["microsoft@cn_domain"], "server": "domestic"},
+      {"rule_set": ["cn_domain"], "server": "domestic"}
     ],
     "final": "foreign",
-    "strategy": "prefer_ipv6",
     "independent_cache": true,
     "reverse_mapping": true
   },
@@ -36,6 +43,7 @@
     {"tag": "涩涩", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "直连"]},
     {"tag": "流媒体", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "直连"]},
     {"tag": "兜底", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "直连"]},
+    {"tag": "其他端口", "type": "selector", "outbounds": ["直连", "香港", "台湾", "新加坡", "日本", "美国"]},
     {"tag": "香港", "type": "selector", "outbounds": ["{all}"], "filter": [{"action": "include", "keywords": ["香港"]}]},
     {"tag": "台湾", "type": "selector", "outbounds": ["{all}"], "filter": [{"action": "include", "keywords": ["台湾"]}]},
     {"tag": "新加坡", "type": "selector", "outbounds": ["{all}"], "filter": [{"action": "include", "keywords": ["新加坡"]}]},
@@ -54,6 +62,8 @@
       {"clash_mode": "global", "outbound": "GLOBAL"},
       {"rule_set": "ads_domain", "outbound": "拒连"},
       {"rule_set": "private_domain", "outbound": "直连"},
+      {"rule_set": "custom_direct_class", "outbound": "国内网站"},
+      {"rule_set": "custom_proxy_class", "outbound": "国外代理"},
       {"rule_set": "steam@cn_domain", "outbound": "国内网站"},
       {"rule_set": "games-cn_domain", "outbound": "国内网站"},
       {"rule_set": "game-platforms-download_domain", "outbound": "国内网站"},
@@ -88,7 +98,9 @@
       {"rule_set": "google_ip", "outbound": "谷歌"},
       {"rule_set": "cloudflare_ip", "outbound": "Cloudflare"},
       {"rule_set": "jp_ip", "outbound": "日区网站"},
-      {"rule_set": "cn_ip", "outbound": "国内网站"}
+      {"rule_set": "cn_ip", "outbound": "国内网站"},
+      {"port": ["53", "853", "80", "443"], "outbound": "兜底"},
+      {"port_range": ["8080:8880"], "outbound": "兜底"}
     ],
     "rule_set": [
       {"tag": "ads_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.srs"},
@@ -123,9 +135,11 @@
       {"tag": "google_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs"},
       {"tag": "cloudflare_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cloudflare.srs"},
       {"tag": "jp_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/jp.srs"},
-      {"tag": "cn_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs"}
+      {"tag": "cn_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs"},
+      {"tag": "custom_direct_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_direct.json"},
+      {"tag": "custom_proxy_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_proxy.json"}
     ],
-    "final": "兜底",
+    "final": "其他端口",
     "default_domain_resolver": {"server": "domestic"}
   },
   "inbounds": [
@@ -197,7 +211,7 @@
   },
   "log": {
     "disabled": false,
-    "level": "info",
+    "level": "error",
     "timestamp": true
   }
 }
