@@ -1,10 +1,10 @@
 # Template-Config  
 
-自用Mihomo、Singbox配置文件及分流规则，不提供Fake-ip配置  
+自用Mihomo、Singbox配置模板及分流规则，不提供Fake-ip配置  
 
-[Mihomo配置](https://github.com/xiaojimie/Template-Config/blob/main/config/mihomo/smart-ruleset.yaml)  
+[Mihomo配置模板](https://github.com/xiaojimie/Template-Config/blob/main/config/mihomo/smart-ruleset.yaml)  
 
-[Singbox配置](https://github.com/xiaojimie/Template-Config/blob/main/config/singbox/momo-ruleset.json)  
+[Singbox配置模板](https://github.com/xiaojimie/Template-Config/blob/main/config/singbox/momo-ruleset.json)  
 
 # Mihomo-Config  
 
