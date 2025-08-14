@@ -6,7 +6,6 @@
       {"tag": "privatehost", "type": "udp", "server": "127.0.0.1"}
     ],
     "rules": [
-      {"action": "route", "server": "foreign", "client_subnet": "1.1.1.1/24"},
       {"query_type": "HTTPS", "action": "reject"},
       {"clash_mode": "direct", "server": "domestic"},
       {"clash_mode": "global", "server": "foreign"},
@@ -24,6 +23,7 @@
       {"rule_set": ["cn_domain"], "server": "domestic"}
     ],
     "final": "foreign",
+    "strategy": "prefer_ipv6",
     "independent_cache": true,
     "reverse_mapping": true
   },
