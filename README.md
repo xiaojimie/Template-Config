@@ -21,5 +21,3 @@
 `http://转换后端/config/订阅&file=配置文件地址`
 
 需要自行修改`鉴权`、`DNS`等信息  
-
-需要自行修改dns.servers.[foreign].client_subnet为ISP DNS  
