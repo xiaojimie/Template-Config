@@ -2,10 +2,11 @@
   "dns": {
     "servers": [
       {"tag": "domestic", "type": "udp", "server": "223.5.5.5"},
-      {"tag": "foreign", "type": "https", "server": "8.8.8.8", "detour": "香港", "client_subnet": "1.1.1.1/32"},
+      {"tag": "foreign", "type": "https", "server": "8.8.8.8", "detour": "香港"},
       {"tag": "privatehost", "type": "udp", "server": "127.0.0.1"}
     ],
     "rules": [
+      {"action": "route", "server": "foreign", "client_subnet": "1.1.1.1/24"},
       {"query_type": "HTTPS", "action": "reject"},
       {"clash_mode": "direct", "server": "domestic"},
       {"clash_mode": "global", "server": "foreign"},
