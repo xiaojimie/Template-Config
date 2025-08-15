@@ -23,7 +23,6 @@
       {"rule_set": ["cn_domain"], "server": "domestic"}
     ],
     "final": "foreign",
-    "strategy": "prefer_ipv6",
     "independent_cache": true,
     "reverse_mapping": true
   },
