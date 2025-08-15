@@ -51,8 +51,7 @@
     {"tag": "日本", "type": "selector", "outbounds": ["{all}"], "filter": [{"action": "include", "keywords": ["日本"]}]},
     {"tag": "美国", "type": "selector", "outbounds": ["{all}"], "filter": [{"action": "include", "keywords": ["美国"]}]},
     {"tag": "GLOBAL", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "直连"]},
-    {"tag": "直连", "type": "direct"},
-    {"tag": "拒连", "type": "block"}
+    {"tag": "直连", "type": "direct"}
   ],
   "route": {
     "rules": [
@@ -61,7 +60,7 @@
       {"ip_is_private": true, "outbound": "直连"},
       {"clash_mode": "direct", "outbound": "直连"},
       {"clash_mode": "global", "outbound": "GLOBAL"},
-      {"rule_set": "ads_domain", "outbound": "拒连"},
+      {"rule_set": "ads_domain", "action": "reject"},
       {"rule_set": "private_domain", "outbound": "直连"},
       {"rule_set": "custom_direct_class", "outbound": "国内网站"},
       {"rule_set": "custom_proxy_class", "outbound": "国外代理"},
