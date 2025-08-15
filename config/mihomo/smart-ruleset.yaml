@@ -63,8 +63,8 @@ dns-groups-anchor:
     - "223.5.5.5"
     - "119.29.29.29"
   gwdns: &gwdns
-    - "https://8.8.8.8/dns-query#香港&ecs=运营商DNS/24&ecs-override=true"
-    - "https://1.1.1.1/dns-query#香港&ecs=运营商DNS/24&ecs-override=true"
+    - "https://8.8.8.8/dns-query#公共DNS&ecs=运营商DNS/24&ecs-override=true"
+    - "https://1.1.1.1/dns-query#公共DNS&ecs=运营商DNS/24&ecs-override=true"
 dns:
   enable: true
   cache-algorithm: arc
@@ -108,6 +108,7 @@ proxy-groups:
   - {name: 流媒体, <<: *gwpr}
   - {name: 兜底, <<: *gwpr}
   - {name: 其他端口, <<: *gnpr}
+  - {name: 公共DNS, <<: *gwpr}
   - {name: 香港, <<: *smgp, include-all-providers: true, filter: "(?i)(香港)"}
   - {name: 台湾, <<: *smgp, include-all-providers: true, filter: "(?i)(台湾)"}
   - {name: 新加坡, <<: *smgp, include-all-providers: true, filter: "(?i)(新加坡)"}
