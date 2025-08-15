@@ -8,10 +8,6 @@
 
 [Singbox配置模板](https://github.com/xiaojimie/Template-Config/blob/main/config/singbox/momo-ruleset.json)  
 
-Singbox配置的思路和Mihomo基本一致，区别在于Singbox规则没有no-resolve功能，因此某些谷歌/CF CDN网站可能会命中谷歌/Cloudflare策略组，而Mihomo会命中兜底策略组  
-
-如果想保持一致可以删掉Mihomo模板规则里相应的no-resolve字段，或者删掉singbox模板中google_ip和cloudflare_ip规则集，我懒得改了（
-
 # Mihomo-Config  
 
 仅支持[smart内核](https://github.com/vernesong/mihomo/releases)使用  
