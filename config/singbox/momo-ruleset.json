@@ -20,7 +20,7 @@
       {"rule_set": ["public-tracker_domain"], "server": "domestic"},
       {"rule_set": ["apple_domain"], "server": "domestic"},
       {"rule_set": ["microsoft@cn_domain"], "server": "domestic"},
-      {"rule_set": ["cn_domain"], "server": "domestic"},
+      {"rule_set": ["cn_domain"], "server": "domestic"}
     ],
     "final": "foreign",
     "client_subnet": "223.5.5.5/32",
