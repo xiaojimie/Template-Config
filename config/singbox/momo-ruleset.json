@@ -99,7 +99,7 @@
       {"rule_set": "cloudflare_ip", "outbound": "Cloudflare"},
       {"rule_set": "jp_ip", "outbound": "日区网站"},
       {"rule_set": "cn_ip", "outbound": "国内网站"},
-      {"port": [53, 853, 80, 443], "outbound": "兜底"}
+      {"port": [53, 853, 80, 443, 8080, 8443], "outbound": "兜底"}
     ],
     "final": "其他端口",
     "rule_set": [
