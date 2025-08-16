@@ -2,7 +2,7 @@
   "dns": {
     "servers": [
       {"tag": "domestic", "type": "udp", "server": "223.5.5.5"},
-      {"tag": "foreign", "type": "https", "server": "1.1.1.1", "detour": "公共DNS", "client_subnet": "223.5.5.5/24"},
+      {"tag": "foreign", "type": "https", "server": "1.1.1.1", "detour": "公共DNS"},
       {"tag": "privatehost", "type": "udp", "server": "127.0.0.1"}
     ],
     "rules": [
@@ -20,7 +20,8 @@
       {"rule_set": ["public-tracker_domain"], "server": "domestic"},
       {"rule_set": ["apple_domain"], "server": "domestic"},
       {"rule_set": ["microsoft@cn_domain"], "server": "domestic"},
-      {"rule_set": ["cn_domain"], "server": "domestic"}
+      {"rule_set": ["cn_domain"], "server": "domestic"},
+      {"action": "route", "server": "foreign", "client_subnet": "223.5.5.5/32"}
     ],
     "final": "foreign",
     "independent_cache": true,
