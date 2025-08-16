@@ -40,7 +40,7 @@ sniffer:
   override-destination: true
   sniff:
     HTTP:
-      ports: [80, 8080-8880]
+      ports: [80, 443, 8080]
       override-destination: true
     TLS:
       ports: [443, 8443]
@@ -157,7 +157,7 @@ rules:
   - RULE-SET,cloudflare_ip,Cloudflare,no-resolve
   - RULE-SET,jp_ip,日区网站
   - RULE-SET,cn_ip,国内网站
-  - DST-PORT,53/853/80/443,兜底
+  - DST-PORT,53/853/80/443/8080/8443,兜底
   - MATCH,其他端口
 rule-providers-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
