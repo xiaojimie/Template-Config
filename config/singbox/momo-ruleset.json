@@ -101,6 +101,7 @@
       {"rule_set": "cn_ip", "outbound": "国内网站"},
       {"port": [53, 853, 80, 443], "outbound": "兜底"}
     ],
+    "final": "其他端口",
     "rule_set": [
       {"tag": "ads_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.srs"},
       {"tag": "private_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs"},
@@ -138,79 +139,19 @@
       {"tag": "custom_direct_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_direct.json"},
       {"tag": "custom_proxy_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_proxy.json"}
     ],
-    "final": "其他端口",
     "default_domain_resolver": {"server": "domestic"}
   },
   "inbounds": [
-    {
-      "tag": "dns-in",
-      "type": "direct",
-      "listen": "::",
-      "listen_port": 1053
-    },
-    {
-      "tag": "http-in",
-      "type": "http",
-      "listen": "::",
-      "listen_port": 8080,
-      "users": [
-        {
-          "username": "user",
-          "password": "password"
-        }
-      ]
-    },
-    {
-      "tag": "socks-in",
-      "type": "socks",
-      "listen": "::",
-      "listen_port": 10808,
-      "users": [
-        {
-          "username": "user",
-          "password": "password"
-        }
-      ]
-    },
-    {
-      "tag": "redirect-in",
-      "type": "redirect",
-      "listen": "::",
-      "listen_port": 7890
-    },
-    {
-      "tag": "tproxy-in",
-      "type": "tproxy",
-      "listen": "::",
-      "listen_port": 7891
-    },
-    {
-      "tag": "tun-in",
-      "type": "tun",
-      "interface_name": "momo",
-      "address": [
-        "172.31.0.1/30",
-        "fdfe:dcba:9876::1/126"
-      ],
-      "auto_route": false,
-      "auto_redirect": false
-    }
+    {"tag": "dns-in", "type": "direct", "listen": "::", "listen_port": 1053},
+    {"tag": "http-in", "type": "http", "listen": "::", "listen_port": 8080, "users": [{"username": "user", "password": "password"}]},
+    {"tag": "socks-in", "type": "socks", "listen": "::", "listen_port": 10808, "users": [{"username": "user", "password": "password"}]},
+    {"tag": "redirect-in", "type": "redirect", "listen": "::", "listen_port": 7890},
+    {"tag": "tproxy-in", "type": "tproxy", "listen": "::", "listen_port": 7891},
+    {"tag": "tun-in", "type": "tun", "interface_name": "momo", "address": ["172.31.0.1/30", "fdfe:dcba:9876::1/126"], "auto_route": false, "auto_redirect": false}
   ],
   "experimental": {
-    "cache_file": {
-      "enabled": true,
-      "path": "/etc/momo/run/cache.db",
-      "store_fakeip": false
-    },
-    "clash_api": {
-      "external_controller": "0.0.0.0:9090",
-      "secret": "password",
-      "default_mode": "rule"
-    }
+    "cache_file": {"enabled": true, "path": "/etc/momo/run/cache.db", "store_fakeip": false},
+    "clash_api": {"external_controller": "0.0.0.0:9090", "secret": "password", "default_mode": "rule"}
   },
-  "log": {
-    "disabled": false,
-    "level": "error",
-    "timestamp": true
-  }
+  "log": {"disabled": false, "level": "error", "timestamp": true}
 }
