@@ -74,9 +74,7 @@ dns:
   proxy-server-nameserver: *gndns
   nameserver: *gwdns
   nameserver-policy:
-    "+.lan": "127.0.0.1"
-    "+.arpa": "127.0.0.1"
-    "rule-set:private_domain": *gndns
+    "rule-set:private_domain": "127.0.0.1"
     "rule-set:custom_direct_class": *gndns
     "rule-set:steam@cn_domain": *gndns
     "rule-set:games-cn_domain": *gndns
@@ -117,8 +115,9 @@ proxy-groups:
   - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://www.apple.com/library/test/success.html", interval: 600}
   - {name: 拒连, type: select, proxies: [REJECT], hidden: true}
 rules:
-  - RULE-SET,ads_domain,拒连
   - RULE-SET,private_domain,直连
+  - RULE-SET,private_ip,直连,no-resolve
+  - RULE-SET,ads_domain,拒连
   - RULE-SET,custom_direct_class,国内网站
   - RULE-SET,custom_proxy_class,国外代理
   - RULE-SET,steam@cn_domain,国内网站
@@ -151,10 +150,7 @@ rules:
   - RULE-SET,gfw_domain,国外代理
   - RULE-SET,geolocation-!cn_domain,国外代理
   - RULE-SET,cn_domain,国内网站
-  - RULE-SET,private_ip,直连,no-resolve
-  - RULE-SET,telegram_ip,通讯,no-resolve
-  - RULE-SET,google_ip,谷歌,no-resolve
-  - RULE-SET,cloudflare_ip,Cloudflare,no-resolve
+  - RULE-SET,telegram_ip,通讯
   - RULE-SET,jp_ip,日区网站
   - RULE-SET,cn_ip,国内网站
   - DST-PORT,53/853/80/443/8080/8443,兜底
@@ -284,14 +280,6 @@ rule-providers:
     <<: *ip
     path: ./rules/telegram_ip.mrs
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"
-  google_ip:
-    <<: *ip
-    path: ./rules/google_ip.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"
-  cloudflare_ip:
-    <<: *ip
-    path: ./rules/cloudflare_ip.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs"
   jp_ip:
     <<: *ip
     path: ./rules/jp_ip.mrs
