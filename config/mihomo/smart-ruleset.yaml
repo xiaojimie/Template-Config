@@ -1,5 +1,5 @@
 proxy-providers-anchor:
-  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 600}}
+  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 86400, health-check: {enable: true, url: "https://cp.cloudflare.com", interval: 600}}
 # 必须填入订阅链接
 proxy-providers:
   Airport1:
@@ -91,7 +91,7 @@ proxy-groups-anchor:
   gnpr: &gnpr {type: select, proxies: [直连, 香港, 台湾, 新加坡, 日本, 美国]}
   smgp: &smgp {type: smart, uselightgbm: true, collectdata: true, strategy: sticky-sessions, sample-rate: 1}
 proxy-groups:
-  - {name: 国内网站, <<: *gnpr, url: "https://www.gstatic.com/generate_204", interval: 600}
+  - {name: 国内网站, <<: *gnpr, url: "https://cp.cloudflare.com", interval: 600}
   - {name: 国外代理, <<: *gwpr}
   - {name: 通讯, <<: *gwpr}
   - {name: 社媒, <<: *gwpr}
