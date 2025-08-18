@@ -50,7 +50,7 @@
     {"tag": "新加坡", "type": "urltest", "outbounds": ["{all}"], "url": "https://cp.cloudflare.com", "interval": "5m", "tolerance": 50, "filter": [{"action": "include", "keywords": ["新加坡"]}, {"action": "exclude", "keywords": ["免费"]}]},
     {"tag": "日本", "type": "urltest", "outbounds": ["{all}"], "url": "https://cp.cloudflare.com", "interval": "5m", "tolerance": 50, "filter": [{"action": "include", "keywords": ["日本"]}, {"action": "exclude", "keywords": ["免费"]}]},
     {"tag": "美国", "type": "urltest", "outbounds": ["{all}"], "url": "https://cp.cloudflare.com", "interval": "5m", "tolerance": 50, "filter": [{"action": "include", "keywords": ["美国"]}, {"action": "exclude", "keywords": ["免费"]}]},
-    {"tag": "全局", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "直连"], "default": "香港"},
+    {"tag": "GLOBAL", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "直连"], "default": "香港"},
     {"tag": "直连", "type": "direct"}
   ],
   "route": {
@@ -60,7 +60,7 @@
       {"ip_is_private": true, "outbound": "直连"},
       {"rule_set": "ads_domain", "action": "reject"},
       {"clash_mode": "direct", "outbound": "直连"},
-      {"clash_mode": "global", "outbound": "全局"},
+      {"clash_mode": "global", "outbound": "GLOBAL"},
       {"rule_set": "private_domain", "outbound": "直连"},
       {"rule_set": "custom_direct_class", "outbound": "国内网站"},
       {"rule_set": "custom_proxy_class", "outbound": "国外代理"},
