@@ -93,8 +93,6 @@
       {"rule_set": "geolocation-!cn_domain", "outbound": "国外代理"},
       {"rule_set": "cn_domain", "outbound": "国内网站"},
       {"rule_set": "telegram_ip", "outbound": "通讯"},
-      {"rule_set": "google_ip", "outbound": "谷歌"},
-      {"rule_set": "cloudflare_ip", "outbound": "Cloudflare"},
       {"rule_set": "jp_ip", "outbound": "日区网站"},
       {"rule_set": "cn_ip", "outbound": "国内网站"},
       {"port": [53, 853, 80, 443, 8080, 8443], "outbound": "兜底"}
@@ -130,8 +128,6 @@
       {"tag": "geolocation-!cn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs"},
       {"tag": "cn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs"},
       {"tag": "telegram_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs"},
-      {"tag": "google_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs"},
-      {"tag": "cloudflare_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cloudflare.srs"},
       {"tag": "jp_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/jp.srs"},
       {"tag": "cn_ip", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs"},
       {"tag": "custom_direct_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_direct.json"},
