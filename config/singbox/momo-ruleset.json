@@ -6,11 +6,9 @@
       {"tag": "privatehost", "type": "udp", "server": "127.0.0.1"}
     ],
     "rules": [
+      {"rule_set": ["private_domain"], "server": "privatehost"},
       {"clash_mode": "direct", "server": "domestic"},
       {"clash_mode": "global", "server": "foreign"},
-      {"domain_suffix": ".lan", "server": "privatehost"},
-      {"domain_suffix": ".arpa", "server": "privatehost"},
-      {"rule_set": ["private_domain"], "server": "domestic"},
       {"rule_set": ["custom_direct_class"], "server": "domestic"},
       {"rule_set": ["steam@cn_domain"], "server": "domestic"},
       {"rule_set": ["games-cn_domain"], "server": "domestic"},
