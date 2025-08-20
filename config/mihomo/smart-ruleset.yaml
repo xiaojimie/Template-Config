@@ -163,7 +163,7 @@ rule-providers:
   ads_domain:
     <<: *domain
     path: ./rules/ads_domain.mrs
-    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs"
+    url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ads.mrs"
   private_domain:
     <<: *domain
     path: ./rules/private_domain.mrs
