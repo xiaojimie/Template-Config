@@ -69,9 +69,7 @@ sniffer:
 dns-groups-anchor:
   gndns: &gndns
     - "223.5.5.5"
-    - "119.29.29.29"
   gwdns: &gwdns
-    - "https://8.8.8.8/dns-query#公共DNS&ecs=运营商DNS/24&ecs-override=true"
     - "https://1.1.1.1/dns-query#公共DNS&ecs=运营商DNS/24&ecs-override=true"
 dns:
   enable: true
