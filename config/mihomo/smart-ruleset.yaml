@@ -75,6 +75,7 @@ dns:
   nameserver: *gwdns
   nameserver-policy:
     "rule-set:private_domain": "127.0.0.1"
+    "rule-set:ads_domain": rcode://name_error
     "rule-set:custom_direct_class": *gndns
     "rule-set:steam@cn_domain": *gndns
     "rule-set:games-cn_domain": *gndns
