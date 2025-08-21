@@ -32,7 +32,15 @@ external-controller: 0.0.0.0:9090
 # 必须修改外部控制鉴权
 secret: "password"
 tun:
-  enable: false
+  enable: true
+  device: mtun0
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
 sniffer:
   enable: true
   force-dns-mapping: true
