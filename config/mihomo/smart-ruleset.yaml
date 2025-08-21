@@ -1,5 +1,5 @@
 proxy-providers-anchor:
-  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 86400, health-check: {enable: true, url: "https://cp.cloudflare.com", interval: 600}}
+  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 86400, health-check: {enable: true, url: "https://cp.cloudflare.com", interval: 300}}
 # 必须填入订阅链接
 proxy-providers:
   Airport1:
@@ -98,7 +98,7 @@ proxy-groups-anchor:
   gnpr: &gnpr {type: select, proxies: [直连, 香港, 台湾, 新加坡, 日本, 美国]}
   smgp: &smgp {type: smart, uselightgbm: true, collectdata: true, strategy: sticky-sessions, sample-rate: 1}
 proxy-groups:
-  - {name: 国内网站, <<: *gnpr, url: "https://cp.cloudflare.com", interval: 600}
+  - {name: 国内网站, <<: *gnpr, url: "https://cp.cloudflare.com", interval: 300}
   - {name: 国外代理, <<: *gwpr}
   - {name: 通讯, <<: *gwpr}
   - {name: 社媒, <<: *gwpr}
@@ -121,7 +121,7 @@ proxy-groups:
   - {name: 新加坡, <<: *smgp, include-all-providers: true, filter: "(?i)(新加坡)"}
   - {name: 日本, <<: *smgp, include-all-providers: true, filter: "(?i)(日本)"}
   - {name: 美国, <<: *smgp, include-all-providers: true, filter: "(?i)(美国)"}
-  - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://www.apple.com/library/test/success.html", interval: 600}
+  - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://www.apple.com/library/test/success.html", interval: 300}
   - {name: 拒连, type: select, proxies: [REJECT], hidden: true}
 rules:
   - RULE-SET,private_domain,直连
