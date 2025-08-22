@@ -8,6 +8,7 @@
     "rules": [
       {"rule_set": ["private_domain"], "server": "privatehost"},
       {"rule_set": ["ads_domain"], "action": "predefined", "rcode": "NXDOMAIN"},
+      {"type": "logical", "mode": "and", "rules": [{"query_type": ["HTTPS"]}, {"rule_set": ["cn_domain"], "invert": true}], "action": "reject"},
       {"clash_mode": "direct", "server": "domestic"},
       {"clash_mode": "global", "server": "foreign"},
       {"rule_set": ["custom_direct_class"], "server": "domestic"},
@@ -59,8 +60,8 @@
       {"ip_is_private": true, "outbound": "直连"},
       {"rule_set": ["private_domain"], "outbound": "直连"},
       {"rule_set": ["ads_domain"], "action": "reject"},
-      {"protocol": ["quic"], "rule_set": ["cn_domain"], "invert": true, "action": "reject"},
-      {"protocol": ["quic"], "rule_set": ["cn_ip"], "invert": true, "action": "reject"},
+      {"type": "logical", "mode": "and", "rules": [{"protocol": ["quic"]}, {"rule_set": ["cn_domain"], "invert": true}], "action": "reject"},
+      {"type": "logical", "mode": "and", "rules": [{"protocol": ["quic"]}, {"rule_set": ["cn_ip"], "invert": true}], "action": "reject"},
       {"clash_mode": "direct", "outbound": "直连"},
       {"clash_mode": "global", "outbound": "GLOBAL"},
       {"rule_set": ["custom_direct_class"], "outbound": "国内网站"},
