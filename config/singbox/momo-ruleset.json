@@ -60,6 +60,8 @@
       {"ip_is_private": true, "outbound": "直连"},
       {"rule_set": "private_domain", "outbound": "直连"},
       {"rule_set": "ads_domain", "action": "reject"},
+      {"protocol": "quic", "rule_set": "cn_domain", "invert": true, "action": "reject"},
+      {"protocol": "quic", "rule_set": "cn_ip", "invert": true, "action": "reject"},
       {"clash_mode": "direct", "outbound": "直连"},
       {"clash_mode": "global", "outbound": "GLOBAL"},
       {"rule_set": "custom_direct_class", "outbound": "国内网站"},
