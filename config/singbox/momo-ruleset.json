@@ -8,6 +8,7 @@
     "rules": [
       {"rule_set": ["private_domain"], "server": "privatehost"},
       {"rule_set": ["ads_domain"], "action": "predefined", "rcode": "NXDOMAIN"},
+      {"rule_set": ["cn_domain"], "invert": true, "query_type": "HTTPS", "action": "reject"},
       {"clash_mode": "direct", "server": "domestic"},
       {"clash_mode": "global", "server": "foreign"},
       {"rule_set": ["custom_direct_class"], "server": "domestic"},
