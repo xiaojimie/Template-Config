@@ -124,7 +124,7 @@
     {"tag": "tun-in", "type": "tun", "interface_name": "momo", "address": ["172.31.0.1/30", "fdfe:dcba:9876::1/126"], "auto_route": false, "auto_redirect": false}
   ],
   "experimental": {
-    "cache_file": {"enabled": true, "path": "/etc/momo/run/cache.db", "store_fakeip": false},
+    "cache_file": {"enabled": true, "path": "/etc/momo/run/cache.db", "store_rdrc": true},
     "clash_api": {"external_controller": "0.0.0.0:9090", "secret": "password", "default_mode": "rule"}
   },
   "log": {"disabled": false, "level": "error", "timestamp": true}
