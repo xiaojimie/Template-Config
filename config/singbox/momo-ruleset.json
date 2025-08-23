@@ -80,7 +80,7 @@
     ],
     "final": "其他端口",
     "rule_set": [
-      {"tag": "ads_domain", "type": "remote", "format": "binary", "url": "https://anti-ad.net/anti-ad-sing-box.srs"},
+      {"tag": "ads_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-ad.github.io/master/docs/anti-ad-sing-box.srs"},
       {"tag": "private_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs"},
       {"tag": "steam@cn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/steam@cn.srs"},
       {"tag": "games-cn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-games-cn.srs"},
