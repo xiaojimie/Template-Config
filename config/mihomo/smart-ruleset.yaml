@@ -89,7 +89,6 @@ proxy-groups-anchor:
   smgp: &smgp {type: smart, uselightgbm: true, collectdata: true, strategy: sticky-sessions, sample-rate: 1}
 proxy-groups:
   - {name: 国内网站, <<: *gnpr, url: "https://cp.cloudflare.com", interval: 300}
-  - {name: 国外代理, <<: *gwpr}
   - {name: 通讯, <<: *gwpr}
   - {name: 社媒, <<: *gwpr}
   - {name: AI, <<: *gwpr}
@@ -104,7 +103,6 @@ proxy-groups:
   - {name: 涩涩, <<: *gwpr}
   - {name: 流媒体, <<: *gwpr}
   - {name: 兜底, <<: *gwpr}
-  - {name: 其他端口, <<: *gnpr}
   - {name: 公共DNS, <<: *gwpr}
   - {name: 香港, <<: *smgp, include-all-providers: true, filter: "(?i)(香港)"}
   - {name: 台湾, <<: *smgp, include-all-providers: true, filter: "(?i)(台湾)"}
@@ -118,7 +116,7 @@ rules:
   - RULE-SET,private_ip,直连,no-resolve
   - RULE-SET,ads_domain,拒连
   - RULE-SET,custom_direct_class,国内网站
-  - RULE-SET,custom_proxy_class,国外代理
+  - RULE-SET,custom_proxy_class,兜底
   - RULE-SET,steam@cn_domain,国内网站
   - RULE-SET,games-cn_domain,国内网站
   - RULE-SET,game-platforms-download_domain,国内网站
@@ -145,14 +143,11 @@ rules:
   - DOMAIN-KEYWORD,emby,流媒体
   - RULE-SET,emby_domain,流媒体
   - RULE-SET,entertainment_domain,流媒体
-  - RULE-SET,gfw_domain,国外代理
-  - RULE-SET,geolocation-!cn_domain,国外代理
   - RULE-SET,cn_domain,国内网站
   - RULE-SET,telegram_ip,通讯
   - RULE-SET,jp_ip,日区网站
   - RULE-SET,cn_ip,国内网站
-  - DST-PORT,53/853/80/443/8080/8443,兜底
-  - MATCH,其他端口
+  - MATCH,兜底
 rule-providers-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
@@ -254,14 +249,6 @@ rule-providers:
     <<: *domain
     path: ./rules/entertainment_domain.mrs
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-entertainment.mrs"
-  gfw_domain:
-    <<: *domain
-    path: ./rules/gfw_domain.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"
-  geolocation-!cn_domain:
-    <<: *domain
-    path: ./rules/geolocation-!cn_domain.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"
   cn_domain:
     <<: *domain
     path: ./rules/cn_domain.mrs
