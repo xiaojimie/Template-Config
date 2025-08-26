@@ -14,7 +14,7 @@
       {"rule_set": ["cn_domain"], "server": "domestic"}
     ],
     "final": "foreign",
-    "client_subnet": "223.5.5.5/32",
+    "client_subnet": "223.5.5.5/24",
     "independent_cache": true,
     "reverse_mapping": true
   },
