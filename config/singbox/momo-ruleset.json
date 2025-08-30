@@ -75,7 +75,7 @@
     ],
     "final": "兜底",
     "rule_set": [
-      {"tag": "ads_domain", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json", "download_detour": "GitHub"},
+      {"tag": "ads_domain", "type": "remote", "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json", "download_detour": "GitHub"},
       {"tag": "private_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs", "download_detour": "GitHub"},
       {"tag": "steam@cn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/steam@cn.srs", "download_detour": "GitHub"},
       {"tag": "games-cn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-games-cn.srs", "download_detour": "GitHub"},
