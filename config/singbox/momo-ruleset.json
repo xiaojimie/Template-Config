@@ -71,7 +71,7 @@
     ],
     "final": "兜底",
     "rule_set": [
-      {"tag": "ads_domain", "type": "remote", "format": "binary", "url": "https://github.com/Lanlan13-14/Rules-singbox/raw/refs/heads/main/rules/banAd_mini.srs", "download_detour": "GitHub"},
+      {"tag": "ads_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/Lanlan13-14/Rules-singbox/refs/heads/main/rules/banAd_mini.srs", "download_detour": "GitHub"},
       {"tag": "private_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs", "download_detour": "GitHub"},
       {"tag": "steam@cn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/steam@cn.srs", "download_detour": "GitHub"},
       {"tag": "games-cn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-games-cn.srs", "download_detour": "GitHub"},
