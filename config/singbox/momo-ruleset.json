@@ -7,7 +7,7 @@
     ],
     "rules": [
       {"rule_set": ["private_domain"], "server": "privatehost"},
-      {"type": "logical", "mode": "and", "rules": [{"query_type": ["HTTPS"]}, {"rule_set": ["cn_domain"], "invert": true}], "action": "reject"},
+      {"query_type": "HTTPS", "action": "reject"},
       {"clash_mode": "direct", "server": "domestic"},
       {"clash_mode": "global", "server": "foreign"},
       {"rule_set": ["cn_domain"], "server": "domestic"}
