@@ -8,8 +8,8 @@
     "rules": [
       {"rule_set": ["private_domain"], "server": "privatehost"},
       {"query_type": "HTTPS", "action": "reject"},
-      {"clash_mode": "direct", "server": "domestic", "strategy": "prefer_ipv6"},
-      {"clash_mode": "global", "server": "foreign", "strategy": "prefer_ipv4"},
+      {"clash_mode": "direct", "server": "domestic"},
+      {"clash_mode": "global", "server": "foreign"},
       {"rule_set": ["cn_domain"], "server": "domestic", "strategy": "prefer_ipv6"}
     ],
     "final": "foreign",
