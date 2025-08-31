@@ -97,8 +97,8 @@ proxy-groups:
   - {name: 游戏平台, <<: *gwpr}
   - {name: 特殊解锁, <<: *gwpr}
   - {name: 日区网站, <<: *gwpr}
-  - {name: 涩涩, <<: *gwpr}
   - {name: 流媒体, <<: *gwpr}
+  - {name: 涩涩, <<: *gwpr}
   - {name: 兜底, <<: *gwpr}
   - {name: 公共DNS, <<: *gwpr}
   - {name: 香港, <<: *atgp, include-all-providers: true, filter: "(?i)(香港)"}
@@ -135,11 +135,11 @@ rules:
   - RULE-SET,pixiv_domain,日区网站
   - RULE-SET,dmm_domain,日区网站
   - RULE-SET,dlsite_domain,日区网站
-  - RULE-SET,porn_domain,涩涩
   - DOMAIN-KEYWORD,iwara,流媒体
   - DOMAIN-KEYWORD,emby,流媒体
   - RULE-SET,emby_domain,流媒体
   - RULE-SET,entertainment_domain,流媒体
+  - RULE-SET,porn_domain,涩涩
   - RULE-SET,cn_domain,国内网站
   - RULE-SET,telegram_ip,通讯
   - RULE-SET,jp_ip,日区网站
@@ -234,10 +234,6 @@ rule-providers:
     <<: *domain
     path: ./rules/dlsite_domain.mrs
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/dlsite.mrs"
-  porn_domain:
-    <<: *domain
-    path: ./rules/porn_domain.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-porn.mrs"
   emby_domain:
     <<: *domain
     path: ./rules/emby_domain.mrs
@@ -246,6 +242,10 @@ rule-providers:
     <<: *domain
     path: ./rules/entertainment_domain.mrs
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-entertainment.mrs"
+  porn_domain:
+    <<: *domain
+    path: ./rules/porn_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-porn.mrs"
   cn_domain:
     <<: *domain
     path: ./rules/cn_domain.mrs
