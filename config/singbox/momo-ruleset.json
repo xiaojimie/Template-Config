@@ -10,10 +10,10 @@
       {"query_type": "HTTPS", "action": "reject"},
       {"clash_mode": "direct", "server": "domestic"},
       {"clash_mode": "global", "server": "foreign"},
-      {"rule_set": ["cn_domain"], "server": "domestic"}
+      {"rule_set": ["cn_domain"], "server": "domestic"},
+      {"rule_set": ["cn_domain"], "invert": true, "server": "foreign", "client_subnet": "223.5.5.5"}
     ],
     "final": "foreign",
-    "client_subnet": "223.5.5.5/24",
     "independent_cache": true,
     "reverse_mapping": true
   },
