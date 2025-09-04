@@ -2,7 +2,7 @@
   "dns": {
     "servers": [
       {"tag": "domestic", "type": "udp", "server": "223.5.5.5"},
-      {"tag": "foreign", "type": "https", "server": "1.1.1.1", "detour": "公共DNS"},
+      {"tag": "foreign", "type": "https", "server": "8.8.8.8", "detour": "公共DNS"},
       {"tag": "privatehost", "type": "udp", "server": "127.0.0.1"}
     ],
     "rules": [
@@ -10,10 +10,10 @@
       {"query_type": "HTTPS", "action": "reject"},
       {"clash_mode": "direct", "server": "domestic"},
       {"clash_mode": "global", "server": "foreign"},
-      {"rule_set": ["cn_domain"], "server": "domestic"},
-      {"rule_set": ["cn_domain"], "invert": true, "server": "foreign", "client_subnet": "223.5.5.5"}
+      {"rule_set": ["cn_domain"], "server": "domestic"}
     ],
     "final": "foreign",
+    "client_subnet": "223.5.5.5/24",
     "independent_cache": true,
     "reverse_mapping": true
   },
