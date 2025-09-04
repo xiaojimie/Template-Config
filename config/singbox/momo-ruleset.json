@@ -10,8 +10,7 @@
       {"query_type": "HTTPS", "action": "reject"},
       {"clash_mode": "direct", "server": "domestic"},
       {"clash_mode": "global", "server": "foreign"},
-      {"rule_set": ["cn_domain"], "server": "domestic"},
-      {"rule_set": ["cn_domain"], "invert": true, "server": "foreign", "client_subnet": "223.5.5.5"}
+      {"rule_set": ["custom_direct_class", "steam@cn_domain", "games-cn_domain", "game-platforms-download_domain", "entertainment-cn_domain", "apple_domain", "microsoft@cn_domain", "cn_domain"], "server": "domestic"}
     ],
     "final": "foreign",
     "independent_cache": true,
