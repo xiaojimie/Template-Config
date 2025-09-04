@@ -70,7 +70,7 @@ dns-groups-anchor:
   gndns: &gndns
     - "223.5.5.5"
   gwdns: &gwdns
-    - "tls://1.1.1.1/dns-query#公共DNS&ecs=运营商DNS/24&ecs-override=true"
+    - "https://1.1.1.1/dns-query#公共DNS&ecs=运营商DNS/24&ecs-override=true"
 dns:
   enable: true
   cache-algorithm: arc
@@ -107,11 +107,9 @@ proxy-groups:
   - {name: 日本, <<: *smgp, include-all-providers: true, filter: "(?i)(日本)"}
   - {name: 美国, <<: *smgp, include-all-providers: true, filter: "(?i)(美国)"}
   - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://www.apple.com/library/test/success.html", interval: 300}
-  - {name: 拒连, type: select, proxies: [REJECT], hidden: true}
 rules:
   - RULE-SET,private_domain,直连
   - RULE-SET,private_ip,直连,no-resolve
-  - RULE-SET,ads_domain,拒连
   - RULE-SET,custom_direct_class,国内网站
   - RULE-SET,custom_proxy_class,兜底
   - RULE-SET,steam@cn_domain,国内网站
@@ -150,10 +148,6 @@ rule-providers-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
 rule-providers:
-  ads_domain:
-    <<: *domain
-    path: ./rules/ads_domain.mrs
-    url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/banAd_mini.mrs"
   private_domain:
     <<: *domain
     path: ./rules/private_domain.mrs
