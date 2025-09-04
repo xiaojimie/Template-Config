@@ -70,7 +70,7 @@ dns-groups-anchor:
   gndns: &gndns
     - "223.5.5.5"
   gwdns: &gwdns
-    - "https://1.1.1.1/dns-query#公共DNS&ecs=运营商DNS/24&ecs-override=true"
+    - "https://1.1.1.1/dns-query#公共DNS"
 dns:
   enable: true
   cache-algorithm: arc
@@ -81,6 +81,13 @@ dns:
   nameserver: *gwdns
   nameserver-policy:
     "rule-set:private_domain": "127.0.0.1"
+    "rule-set:custom_direct_class": *gndns
+    "rule-set:steam@cn_domain": *gndns
+    "rule-set:games-cn_domain": *gndns
+    "rule-set:game-platforms-download_domain": *gndns
+    "rule-set:entertainment-cn_domain": *gndns
+    "rule-set:apple_domain": *gndns
+    "rule-set:microsoft@cn_domain": *gndns
     "rule-set:cn_domain": *gndns
 proxy-groups-anchor:
   gwpr: &gwpr {type: select, proxies: [香港, 台湾, 新加坡, 日本, 美国, 直连]}
