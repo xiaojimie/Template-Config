@@ -28,6 +28,14 @@ authentication:
   - "user:password"
 profile:
   store-selected: true
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 72
+geox-url:
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
+  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
 external-controller: 0.0.0.0:9090
 # 必须修改外部控制鉴权
 secret: "password"
