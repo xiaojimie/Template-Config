@@ -1,5 +1,5 @@
 proxy-providers-anchor:
-  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}}
+  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 600}}
 # 必须填入订阅链接
 proxy-providers:
   Airport1:
@@ -92,7 +92,7 @@ dns:
 proxy-groups-anchor:
   gwpr: &gwpr {type: select, proxies: [香港, 台湾, 新加坡, 日本, 美国, 直连]}
   gnpr: &gnpr {type: select, proxies: [直连, 香港, 台湾, 新加坡, 日本, 美国]}
-  atgp: &atgp {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 50, lazy: false}
+  atgp: &atgp {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 600, tolerance: 50}
 proxy-groups:
   - {name: 国内网站, <<: *gnpr}
   - {name: 通讯, <<: *gwpr}
@@ -113,7 +113,7 @@ proxy-groups:
   - {name: 新加坡, <<: *atgp, include-all-providers: true, filter: "(?i)(新加坡)"}
   - {name: 日本, <<: *atgp, include-all-providers: true, filter: "(?i)(日本)"}
   - {name: 美国, <<: *atgp, include-all-providers: true, filter: "(?i)(美国)"}
-  - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://www.apple.com/library/test/success.html", interval: 300}
+  - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://www.apple.com/library/test/success.html", interval: 600}
 rules:
   - RULE-SET,private_domain,直连
   - RULE-SET,private_ip,直连,no-resolve
