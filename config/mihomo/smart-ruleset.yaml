@@ -28,6 +28,10 @@ authentication:
   - "user:password"
 profile:
   store-selected: true
+  smart-collector-size: 100
+lgbm-auto-update: true
+lgbm-update-interval: 72
+lgbm-url: "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin"
 external-controller: 0.0.0.0:9090
 # 必须修改外部控制鉴权
 secret: "password"
