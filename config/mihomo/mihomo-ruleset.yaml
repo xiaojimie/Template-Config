@@ -48,22 +48,15 @@ sniffer:
   override-destination: true
   sniff:
     HTTP:
-      ports: [80, 443, 8080]
+      ports: [80]
       override-destination: true
     TLS:
-      ports: [443, 8443]
+      ports: [443]
     QUIC:
-      ports: [443, 8443]
+      ports: [443]
   skip-domain:
     - "Mijia Cloud"
-    - "dlg.io.mi.com"
-    - "+.iot.mi.com"
-    - "+.apple.com"
-    - "+.wechat.com"
-    - "+.qpic.cn"
-    - "+.qq.com"
-    - "+.wechatapp.com"
-    - "+.vivox.com"
+    - "+.push.apple.com"
 # 国内DNS建议填入运营商自动分配的DNS服务器
 # 国外DNS在ecs段填入运营商自动分配的DNS服务器
 dns-groups-anchor:
