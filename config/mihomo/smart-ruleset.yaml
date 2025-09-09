@@ -118,7 +118,7 @@ proxy-groups:
   - {name: 新加坡, <<: *smgp, include-all-providers: true, filter: "(?i)(新加坡)"}
   - {name: 日本, <<: *smgp, include-all-providers: true, filter: "(?i)(日本)"}
   - {name: 美国, <<: *smgp, include-all-providers: true, filter: "(?i)(美国)"}
-  - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://www.apple.com/library/test/success.html", interval: 600}
+  - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://wifi.vivo.com.cn/generate_204", interval: 600}
 rules:
   - RULE-SET,private_domain,直连
   - RULE-SET,private_ip,直连,no-resolve
