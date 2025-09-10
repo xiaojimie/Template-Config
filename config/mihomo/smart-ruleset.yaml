@@ -28,18 +28,9 @@ authentication:
   - "user:password"
 profile:
   store-selected: true
-  smart-collector-size: 100
 lgbm-auto-update: true
 lgbm-update-interval: 72
 lgbm-url: "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin"
-geodata-mode: true
-geo-auto-update: true
-geo-update-interval: 72
-geox-url:
-  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
-  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
-  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
-  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
 external-controller: 0.0.0.0:9090
 # 必须修改外部控制鉴权
 secret: "password"
@@ -98,7 +89,7 @@ dns:
 proxy-groups-anchor:
   gwpr: &gwpr {type: select, proxies: [香港, 台湾, 新加坡, 日本, 美国, 直连]}
   gnpr: &gnpr {type: select, proxies: [直连, 香港, 台湾, 新加坡, 日本, 美国]}
-  smgp: &smgp {type: smart, uselightgbm: true, collectdata: false, strategy: sticky-sessions, sample-rate: 1}
+  smgp: &smgp {type: smart, uselightgbm: true, collectdata: false, strategy: sticky-sessions}
 proxy-groups:
   - {name: 国内网站, <<: *gnpr, url: "https://www.gstatic.com/generate_204", interval: 600}
   - {name: 通讯, <<: *gwpr}
