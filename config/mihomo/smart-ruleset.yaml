@@ -86,7 +86,6 @@ dns:
   proxy-server-nameserver: *gndns
   nameserver: *gwdns
   nameserver-policy:
-    "rule-set:private_domain": "127.0.0.1"
     "rule-set:custom_direct_class": *gndns
     "rule-set:steam@cn_domain": *gndns
     "rule-set:games-cn_domain": *gndns
@@ -121,7 +120,6 @@ proxy-groups:
   - {name: 美国, <<: *smgp, include-all-providers: true, filter: "(?i)(美国)"}
   - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://wifi.vivo.com.cn/generate_204", interval: 600}
 rules:
-  - RULE-SET,private_domain,直连
   - RULE-SET,private_ip,直连,no-resolve
   - RULE-SET,custom_direct_class,国内网站
   - RULE-SET,custom_proxy_class,兜底
@@ -161,10 +159,6 @@ rule-providers-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
 rule-providers:
-  private_domain:
-    <<: *domain
-    path: ./rules/private_domain.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"
   steam@cn_domain:
     <<: *domain
     path: ./rules/steam@cn_domain.mrs
