@@ -2,11 +2,9 @@
   "dns": {
     "servers": [
       {"tag": "domestic", "type": "udp", "server": "223.5.5.5"},
-      {"tag": "foreign", "type": "https", "server": "1.1.1.1", "detour": "公共DNS"},
-      {"tag": "privatehost", "type": "udp", "server": "127.0.0.1"}
+      {"tag": "foreign", "type": "https", "server": "1.1.1.1", "detour": "公共DNS"}
     ],
     "rules": [
-      {"rule_set": ["private_domain"], "server": "privatehost"},
       {"query_type": "HTTPS", "action": "reject"},
       {"clash_mode": "direct", "server": "domestic"},
       {"clash_mode": "global", "server": "foreign"},
@@ -44,7 +42,6 @@
       {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"]},
       {"inbound": ["dns-in"], "action": "hijack-dns"},
       {"ip_is_private": true, "outbound": "直连"},
-      {"rule_set": ["private_domain"], "outbound": "直连"},
       {"protocol": ["quic"], "action": "reject"},
       {"clash_mode": "direct", "outbound": "直连"},
       {"clash_mode": "global", "outbound": "GLOBAL"},
@@ -68,7 +65,6 @@
     ],
     "final": "兜底",
     "rule_set": [
-      {"tag": "private_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs", "download_detour": "GitHub"},
       {"tag": "steam@cn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/steam@cn.srs", "download_detour": "GitHub"},
       {"tag": "games-cn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-games-cn.srs", "download_detour": "GitHub"},
       {"tag": "game-platforms-download_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-game-platforms-download.srs", "download_detour": "GitHub"},
