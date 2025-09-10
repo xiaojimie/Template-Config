@@ -81,7 +81,6 @@ dns:
   cache-algorithm: arc
   listen: 0.0.0.0:1053
   ipv6: true
-  prefer-h3: true
   enhanced-mode: redir-host
   proxy-server-nameserver: *gndns
   nameserver: *gwdns
