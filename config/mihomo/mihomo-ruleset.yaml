@@ -66,17 +66,19 @@ sniffer:
     - "Mijia Cloud"
     - "+.push.apple.com"
 # 国内DNS建议填入运营商自动分配的DNS服务器
-# 国外DNS在ecs段填入运营商自动分配的DNS服务器
 dns-groups-anchor:
   gndns: &gndns
     - "223.5.5.5"
+    - "180.184.1.1"
   gwdns: &gwdns
     - "https://1.1.1.1/dns-query#公共DNS"
+    - "https://8.8.8.8/dns-query#公共DNS"
 dns:
   enable: true
   cache-algorithm: arc
   listen: 0.0.0.0:1053
   ipv6: true
+  prefer-h3: true
   enhanced-mode: redir-host
   proxy-server-nameserver: *gndns
   nameserver: *gwdns
