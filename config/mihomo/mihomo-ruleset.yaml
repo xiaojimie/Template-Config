@@ -61,10 +61,8 @@ sniffer:
 dns-groups-anchor:
   gndns: &gndns
     - "223.5.5.5"
-    - "180.184.1.1"
   gwdns: &gwdns
     - "https://1.1.1.1/dns-query#公共DNS"
-    - "https://8.8.8.8/dns-query#公共DNS"
 dns:
   enable: true
   cache-algorithm: arc
