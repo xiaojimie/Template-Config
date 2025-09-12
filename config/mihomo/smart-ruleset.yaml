@@ -57,17 +57,18 @@ sniffer:
   skip-domain:
     - "Mijia Cloud"
     - "+.push.apple.com"
-# 国内DNS建议填入运营商自动分配的DNS服务器
+# ECS字段建议填入运营商自动分配的DNS服务器或本地公网ip以就近接入CDN
 dns-groups-anchor:
   gndns: &gndns
-    - "223.5.5.5"
+    - "https://223.5.5.5/dns-query#ecs=8.8.8.8/24&ecs-override=true"
   gwdns: &gwdns
-    - "https://1.1.1.1/dns-query#公共DNS"
+    - "https://1.1.1.1/dns-query#公共DNS&ecs=8.8.8.8/24&ecs-override=true"
 dns:
   enable: true
   cache-algorithm: arc
   listen: 0.0.0.0:1053
   ipv6: true
+  prefer-h3: true
   enhanced-mode: redir-host
   proxy-server-nameserver: *gndns
   nameserver: *gwdns
