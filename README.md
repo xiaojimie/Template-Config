@@ -4,7 +4,7 @@
 
 模板没有api面板的ui名称、路径、下载地址等信息，如有需要请自行查看内核wiki进行添加  
 
-[Mihomo配置模板](https://github.com/xiaojimie/Template-Config/blob/main/config/mihomo/mihomo-ruleset.yaml) [Smart fork配置模板](https://github.com/xiaojimie/Template-Config/blob/main/config/mihomo/smart-ruleset.yaml)  
+[Mihomo配置模板](https://github.com/xiaojimie/Template-Config/blob/main/config/mihomo/mihomo-ruleset.yaml)  
 
 [Singbox配置模板](https://github.com/xiaojimie/Template-Config/blob/main/config/singbox/momo-ruleset.json)  
 
