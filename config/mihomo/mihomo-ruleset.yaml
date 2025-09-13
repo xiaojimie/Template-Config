@@ -92,7 +92,7 @@ proxy-groups:
   - {name: AI, <<: *gwpr}
   - {name: GitHub, <<: *gwpr}
   - {name: 油管, <<: *gwpr}
-  - {name: 谷歌CF, <<: *gwpr}
+  - {name: 谷歌, <<: *gwpr}
   - {name: 游戏平台, <<: *gwpr}
   - {name: 特殊解锁, <<: *gwpr}
   - {name: 日区网站, <<: *gwpr}
@@ -121,8 +121,7 @@ rules:
   - RULE-SET,ai-!cn_domain,AI
   - RULE-SET,github_domain,GitHub
   - RULE-SET,youtube_domain,油管
-  - RULE-SET,google_domain,谷歌CF
-  - RULE-SET,cloudflare_domain,谷歌CF
+  - RULE-SET,google_domain,谷歌
   - RULE-SET,games-!cn_domain,游戏平台
   - DOMAIN-KEYWORD,saucenao,特殊解锁
   - DOMAIN-KEYWORD,sankakucomplex,特殊解锁
@@ -194,10 +193,6 @@ rule-providers:
     <<: *domain
     path: ./rules/google_domain.mrs
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"
-  cloudflare_domain:
-    <<: *domain
-    path: ./rules/cloudflare_domain.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.mrs"
   games-!cn_domain:
     <<: *domain
     path: ./rules/games-!cn_domain.mrs
