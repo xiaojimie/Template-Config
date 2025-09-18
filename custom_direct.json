@@ -3,7 +3,8 @@
   "rules": [
     {
       "domain_suffix": [
-        "cdn.metaglide.org"
+        "cdn.metaglide.org",
+        "so.252035.xyz"
       ]
     }
   ]
