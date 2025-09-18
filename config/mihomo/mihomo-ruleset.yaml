@@ -109,8 +109,6 @@ proxy-groups:
   - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://wifi.vivo.com.cn/generate_204", interval: 600}
 rules:
   - RULE-SET,private_ip,直连,no-resolve
-  - RULE-SET,custom_direct_class,国内网站
-  - RULE-SET,custom_proxy_class,兜底
   - RULE-SET,steam@cn_domain,国内网站
   - RULE-SET,games-cn_domain,国内网站
   - RULE-SET,game-platforms-download_domain,国内网站
@@ -137,6 +135,8 @@ rules:
   - RULE-SET,entertainment_domain,流媒体
   - RULE-SET,porn_domain,涩涩
   - RULE-SET,cn_domain,国内网站
+  - RULE-SET,custom_direct_class,国内网站
+  - RULE-SET,custom_proxy_class,兜底
   - RULE-SET,telegram_ip,通讯
   - RULE-SET,jp_ip,日区网站
   - RULE-SET,cn_ip,国内网站
