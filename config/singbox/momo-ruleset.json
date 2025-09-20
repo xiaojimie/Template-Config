@@ -11,7 +11,7 @@
       {"rule_set": ["custom_direct_class", "steam@cn_domain", "games-cn_domain", "game-platforms-download_domain", "entertainment-cn_domain", "apple_domain", "microsoft@cn_domain", "cn_domain"], "server": "domestic"}
     ],
     "final": "foreign",
-    "client_subnet": "223.5.5.5",
+    "client_subnet": "223.5.5.5/24",
     "independent_cache": true,
     "reverse_mapping": true
   },
