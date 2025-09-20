@@ -57,13 +57,12 @@ sniffer:
   skip-domain:
     - "Mijia Cloud"
     - "+.push.apple.com"
-# 国内DNS建议使用运营商DNS
 # 国外DNS中的ECS字段可以填入运营商DNS以就近接入
 dns-groups-anchor:
   gndns: &gndns
-    - "223.5.5.5"
+    - "https://223.5.5.5/dns-query#h3=true&ecs=1.1.1.1/24&ecs-override=true"
   gwdns: &gwdns
-    - "https://8.8.8.8/dns-query#公共DNS&ecs=223.5.5.5/24&ecs-override=true"
+    - "https://8.8.8.8/dns-query#公共DNS&h3=true&ecs=1.1.1.1/24&ecs-override=true"
 dns:
   enable: true
   cache-algorithm: arc
