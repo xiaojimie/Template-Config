@@ -3,7 +3,9 @@
 # 国外DNS
 DOMAIN-SUFFIX,dns.google
 DOMAIN-SUFFIX,dns.cloudflare.com
+DOMAIN-SUFFIX,adguard-dns.com
 IP-CIDR,8.8.8.8/32,no-resolve
 IP-CIDR,8.8.4.4/32,no-resolve
 IP-CIDR,1.1.1.1/32,no-resolve
 IP-CIDR,1.0.0.1/32,no-resolve
+IP-CIDR,94.140.14.140/32,no-resolve
