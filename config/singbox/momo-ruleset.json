@@ -1,8 +1,8 @@
 {
   "dns": {
     "servers": [
-      {"tag": "domestic", "type": "h3", "server": "223.5.5.5"},
-      {"tag": "foreign", "type": "h3", "server": "8.8.8.8", "detour": "公共DNS"}
+      {"tag": "domestic", "type": "quic", "server": "223.5.5.5"},
+      {"tag": "foreign", "type": "https", "server": "8.8.8.8", "detour": "公共DNS"}
     ],
     "rules": [
       {"query_type": "HTTPS", "action": "reject"},
