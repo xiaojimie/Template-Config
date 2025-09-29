@@ -60,9 +60,9 @@ sniffer:
 # 国外DNS中的ECS字段可以填入运营商DNS以就近接入
 dns-groups-anchor:
   gndns: &gndns
-    - "https://223.5.5.5/dns-query#h3=true&ecs=1.1.1.1/24&ecs-override=true"
+    - "quic://223.5.5.5#ecs=1.1.1.1/24&ecs-override=true"
   gwdns: &gwdns
-    - "https://8.8.8.8/dns-query#公共DNS&h3=true&ecs=1.1.1.1/24&ecs-override=true"
+    - "https://8.8.8.8/dns-query#公共DNS&ecs=1.1.1.1/24&ecs-override=true"
 dns:
   enable: true
   cache-algorithm: arc
