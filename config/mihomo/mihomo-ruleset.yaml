@@ -1,5 +1,5 @@
 proxy-providers-anchor:
-  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 600}}
+  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 600, lazy: false}}
 # 必须填入订阅链接
 proxy-providers:
   Airport1:
@@ -83,7 +83,7 @@ dns:
 proxy-groups-anchor:
   gwpr: &gwpr {type: select, proxies: [香港, 台湾, 新加坡, 日本, 美国, 直连]}
   gnpr: &gnpr {type: select, proxies: [直连, 香港, 台湾, 新加坡, 日本, 美国]}
-  atgp: &atgp {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 600, tolerance: 50}
+  atgp: &atgp {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 600, tolerance: 50, lazy: false}
 #  url-test或smart二选一，如需使用smart策略组需要自行更换smart fork核心
 #  atgp: &atgp {type: smart, uselightgbm: true, collectdata: false, strategy: sticky-sessions}
 proxy-groups:
@@ -106,7 +106,7 @@ proxy-groups:
   - {name: 新加坡, <<: *atgp, include-all-providers: true, filter: "(?i)(新加坡)"}
   - {name: 日本, <<: *atgp, include-all-providers: true, filter: "(?i)(日本)"}
   - {name: 美国, <<: *atgp, include-all-providers: true, filter: "(?i)(美国)"}
-  - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://wifi.vivo.com.cn/generate_204", interval: 600}
+  - {name: 直连, type: select, proxies: [DIRECT], hidden: true, url: "https://wifi.vivo.com.cn/generate_204", interval: 600, lazy: false}
 rules:
   - RULE-SET,private_ip,直连,no-resolve
   - RULE-SET,steam@cn_domain,国内网站
