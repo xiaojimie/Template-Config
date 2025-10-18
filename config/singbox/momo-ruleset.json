@@ -28,7 +28,8 @@
       {"rule_set": ["mega_domain", "ehentai_domain"], "server": "foreign07"},
       {"rule_set": ["pixiv_domain", "dmm_domain", "dlsite_domain"], "server": "foreign08"},
       {"rule_set": ["emby_domain", "entertainment_domain"], "server": "foreign09"},
-      {"rule_set": ["porn_domain"], "server": "foreign10"}
+      {"rule_set": ["porn_domain"], "server": "foreign10"},
+      {"rule_set": ["cn_domain", "custom_direct_class"], "server": "domestic"}
     ],
     "final": "foreign",
     "independent_cache": true,
