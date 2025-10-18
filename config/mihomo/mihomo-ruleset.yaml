@@ -1,5 +1,5 @@
 proxy-providers-anchor:
-  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 600, lazy: false}}
+  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300, lazy: false}}
 # 必须填入订阅链接
 proxy-providers:
   Airport1:
@@ -48,42 +48,72 @@ sniffer:
   override-destination: true
   sniff:
     HTTP:
-      ports: [80]
-      override-destination: true
+      ports: [1-65535]
     TLS:
-      ports: [443]
+      ports: [1-65535]
     QUIC:
-      ports: [443]
+      ports: [1-65535]
   skip-domain:
     - "Mijia Cloud"
     - "+.push.apple.com"
-# 国外DNS中的ECS字段可以填入运营商DNS以就近接入
-dns-groups-anchor:
-  gndns: &gndns
-    - "https://223.5.5.5/dns-query#ecs=1.1.1.1/24&ecs-override=true"
-  gwdns: &gwdns
-    - "https://8.8.8.8/dns-query#公共DNS&ecs=1.1.1.1/24&ecs-override=true"
+# 国内DNS建议改用运营商DNS
+# 国外DNS中的ECS字段可以填入运营商DNS以精准分流和就近接入
 dns:
   enable: true
   cache-algorithm: arc
   listen: 0.0.0.0:1053
   ipv6: true
   enhanced-mode: redir-host
-  proxy-server-nameserver: *gndns
-  nameserver: *gwdns
+  proxy-server-nameserver:
+    - "https://223.5.5.5/dns-query"
+    - "https://223.6.6.6/dns-query"
+  direct-nameserver:
+    - "https://223.5.5.5/dns-query"
+    - "https://223.6.6.6/dns-query"
+  nameserver:
+    - "https://8.8.8.8/dns-query#兜底&ecs=1.1.1.1/24&ecs-override=true"
+    - "https://9.9.9.11/dns-query#兜底&ecs=1.1.1.1/24&ecs-override=true"
   nameserver-policy:
-    "rule-set:custom_direct_class": *gndns
-    "rule-set:steam@cn_domain": *gndns
-    "rule-set:games-cn_domain": *gndns
-    "rule-set:game-platforms-download_domain": *gndns
-    "rule-set:entertainment-cn_domain": *gndns
-    "rule-set:apple_domain": *gndns
-    "rule-set:microsoft@cn_domain": *gndns
-    "rule-set:cn_domain": *gndns
+    "rule-set:steam@cn_domain,games-cn_domain,game-platforms-download_domain,entertainment-cn_domain,apple_domain,microsoft@cn_domain":
+    - "https://223.5.5.5/dns-query"
+    - "https://223.6.6.6/dns-query"
+    "rule-set:communication_domain":
+    - "https://8.8.8.8/dns-query#通讯"
+    - "https://9.9.9.11/dns-query#通讯"
+    "rule-set:social-media-!cn_domain":
+    - "https://8.8.8.8/dns-query#社媒"
+    - "https://9.9.9.11/dns-query#社媒"
+    "rule-set:ai-!cn_domain":
+    - "https://8.8.8.8/dns-query#AI"
+    - "https://9.9.9.11/dns-query#AI"
+    "rule-set:youtube_domain":
+    - "https://8.8.8.8/dns-query#油管"
+    - "https://9.9.9.11/dns-query#油管"
+    "rule-set:google_domain":
+    - "https://8.8.8.8/dns-query#谷歌"
+    - "https://9.9.9.11/dns-query#谷歌"
+    "rule-set:games-!cn_domain":
+    - "https://8.8.8.8/dns-query#游戏平台"
+    - "https://9.9.9.11/dns-query#游戏平台"
+    "rule-set:mega_domain,ehentai_domain":
+    - "https://8.8.8.8/dns-query#特殊解锁"
+    - "https://9.9.9.11/dns-query#特殊解锁"
+    "rule-set:pixiv_domain,dmm_domain,dlsite_domain":
+    - "https://8.8.8.8/dns-query#日区网站"
+    - "https://9.9.9.11/dns-query#日区网站"
+    "rule-set:emby_domain,entertainment_domain":
+    - "https://8.8.8.8/dns-query#流媒体"
+    - "https://9.9.9.11/dns-query#流媒体"
+    "rule-set:porn_domain":
+    - "https://8.8.8.8/dns-query#涩涩"
+    - "https://9.9.9.11/dns-query#涩涩"
+    "rule-set:cn_domain,custom_direct_class":
+    - "https://223.5.5.5/dns-query"
+    - "https://223.6.6.6/dns-query"
 proxy-groups-anchor:
   gwpr: &gwpr {type: select, proxies: [香港, 台湾, 新加坡, 日本, 美国, 直连]}
   gnpr: &gnpr {type: select, proxies: [直连, 香港, 台湾, 新加坡, 日本, 美国]}
-  atgp: &atgp {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 600, tolerance: 50, lazy: false}
+  atgp: &atgp {type: url-test, url: "https://www.gstatic.com/generate_204", interval: 300, tolerance: 50, lazy: false}
 #  url-test或smart二选一，如需使用smart策略组需要自行更换smart fork核心
 #  atgp: &atgp {type: smart, uselightgbm: true, collectdata: false, strategy: sticky-sessions}
 proxy-groups:
@@ -91,7 +121,6 @@ proxy-groups:
   - {name: 通讯, <<: *gwpr}
   - {name: 社媒, <<: *gwpr}
   - {name: AI, <<: *gwpr}
-  - {name: GitHub, <<: *gwpr}
   - {name: 油管, <<: *gwpr}
   - {name: 谷歌, <<: *gwpr}
   - {name: 游戏平台, <<: *gwpr}
@@ -100,7 +129,6 @@ proxy-groups:
   - {name: 流媒体, <<: *gwpr}
   - {name: 涩涩, <<: *gwpr}
   - {name: 兜底, <<: *gwpr}
-  - {name: 公共DNS, <<: *gwpr}
   - {name: 香港, <<: *atgp, include-all-providers: true, filter: "(?i)(香港)"}
   - {name: 台湾, <<: *atgp, include-all-providers: true, filter: "(?i)(台湾)"}
   - {name: 新加坡, <<: *atgp, include-all-providers: true, filter: "(?i)(新加坡)"}
@@ -118,7 +146,6 @@ rules:
   - RULE-SET,communication_domain,通讯
   - RULE-SET,social-media-!cn_domain,社媒
   - RULE-SET,ai-!cn_domain,AI
-  - RULE-SET,github_domain,GitHub
   - RULE-SET,youtube_domain,油管
   - RULE-SET,google_domain,谷歌
   - RULE-SET,games-!cn_domain,游戏平台
@@ -182,10 +209,6 @@ rule-providers:
     <<: *domain
     path: ./rules/ai-!cn_domain.mrs
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs"
-  github_domain:
-    <<: *domain
-    path: ./rules/github_domain.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"
   youtube_domain:
     <<: *domain
     path: ./rules/youtube_domain.mrs
