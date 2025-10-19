@@ -2,6 +2,7 @@
   "dns": {
     "servers": [
       {"tag": "domestic", "type": "https", "server": "223.5.5.5"},
+      {"tag": "domestic01", "type": "https", "server": "223.5.5.5"},
       {"tag": "foreign", "type": "https", "server": "8.8.8.8", "detour": "兜底"},
       {"tag": "foreign01", "type": "https", "server": "8.8.8.8", "detour": "通讯"},
       {"tag": "foreign02", "type": "https", "server": "8.8.8.8", "detour": "社媒"},
@@ -113,7 +114,7 @@
       {"tag": "custom_direct_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_direct.json", "download_detour": "兜底"},
       {"tag": "custom_proxy_class", "type": "remote", "format": "source", "url": "https://raw.githubusercontent.com/xiaojimie/Template-Config/refs/heads/main/custom_proxy.json", "download_detour": "兜底"}
     ],
-    "default_domain_resolver": {"server": "domestic"}
+    "default_domain_resolver": {"server": "domestic01"}
   },
   "inbounds": [
     {"tag": "dns-in", "type": "direct", "listen": "::", "listen_port": 1053},
