@@ -31,7 +31,7 @@
       {"domain_suffix": [".iwara.tv"], "server": "entertainment_dns"},
       {"rule_set": ["entertainment_domain"], "server": "entertainment_dns"},
       {"rule_set": ["porn_domain"], "server": "porn_dns"},
-      {"rule_set": ["cn_domain"], "server": "domestic_dns"}
+      {"rule_set": ["cn_domain", "custom_direct_class"], "server": "domestic_dns"}
     ],
     "final": "foreign_dns",
     "independent_cache": true,
