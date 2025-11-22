@@ -25,10 +25,8 @@
       {"rule_set": ["youtube_domain"], "server": "youtube_dns"},
       {"rule_set": ["google_domain"], "server": "google_dns"},
       {"rule_set": ["games-!cn_domain"], "server": "games_dns"},
-      {"domain_suffix": [".sankakucomplex.com"], "server": "unlock_dns"},
       {"rule_set": ["mega_domain", "ehentai_domain"], "server": "unlock_dns"},
       {"rule_set": ["pixiv_domain", "dmm_domain", "dlsite_domain"], "server": "jpweb_dns"},
-      {"domain_suffix": [".iwara.tv"], "server": "entertainment_dns"},
       {"rule_set": ["entertainment_domain"], "server": "entertainment_dns"},
       {"rule_set": ["porn_domain"], "server": "porn_dns"},
       {"rule_set": ["cn_domain", "custom_direct_class"], "server": "domestic_dns"}
