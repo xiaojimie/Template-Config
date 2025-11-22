@@ -29,6 +29,8 @@ authentication:
 profile:
   store-selected: true
 external-controller: 0.0.0.0:9090
+external-ui: ui
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 # 必须修改外部控制鉴权
 secret: "password"
 tun:
