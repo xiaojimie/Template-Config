@@ -2,8 +2,6 @@
 
 自用Mihomo、Singbox配置模板及分流规则，不提供Fake-ip配置  
 
-模板没有api面板的ui名称、路径、下载地址等信息，如有需要请自行查看内核wiki进行添加  
-
 [Mihomo配置模板](https://github.com/xiaojimie/Template-Config/blob/main/config/mihomo/mihomo-ruleset.yaml)  
 
 [Singbox配置模板](https://github.com/xiaojimie/Template-Config/blob/main/config/singbox/momo-ruleset.json)  
