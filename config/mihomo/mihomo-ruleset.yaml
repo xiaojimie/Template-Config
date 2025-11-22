@@ -113,10 +113,8 @@ dns:
     "rule-set:youtube_domain": *youtube_dns
     "rule-set:google_domain": *google_dns
     "rule-set:games-!cn_domain": *games_dns
-    "+.sankakucomplex.com": *unlock_dns
     "rule-set:mega_domain,ehentai_domain": *unlock_dns
     "rule-set:pixiv_domain,dmm_domain,dlsite_domain": *jpweb_dns
-    "+.iwara.tv": *entertainment_dns
     "rule-set:entertainment_domain": *entertainment_dns
     "rule-set:porn_domain": *porn_dns
     "rule-set:cn_domain,custom_direct_class": *domestic_dns
