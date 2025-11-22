@@ -2,17 +2,9 @@
   "version": 3,
   "rules": [
     {
-      "domain_suffix": [
-        "dns.google",
-        "quad9.net",
-        "adguard-dns.com"
-      ]
-    },
-    {
       "ip_cidr": [
         "8.8.8.8/32",
-        "9.9.9.11/32",
-        "94.140.14.140/32"
+        "1.1.1.1/32"
       ]
     }
   ]
