@@ -2,34 +2,13 @@
   "dns": {
     "servers": [
       {"tag": "domestic_dns", "type": "https", "server": "223.5.5.5"},
-      {"tag": "foreign_dns", "type": "https", "server": "8.8.8.8", "detour": "兜底"},
-      {"tag": "communication_dns", "type": "https", "server": "8.8.8.8", "detour": "通讯"},
-      {"tag": "social_media_dns", "type": "https", "server": "8.8.8.8", "detour": "社媒"},
-      {"tag": "ai_dns", "type": "https", "server": "8.8.8.8", "detour": "AI"},
-      {"tag": "youtube_dns", "type": "https", "server": "8.8.8.8", "detour": "油管"},
-      {"tag": "google_dns", "type": "https", "server": "8.8.8.8", "detour": "谷歌"},
-      {"tag": "games_dns", "type": "https", "server": "8.8.8.8", "detour": "游戏平台"},
-      {"tag": "unlock_dns", "type": "https", "server": "8.8.8.8", "detour": "特殊解锁"},
-      {"tag": "jpweb_dns", "type": "https", "server": "8.8.8.8", "detour": "日区网站"},
-      {"tag": "entertainment_dns", "type": "https", "server": "8.8.8.8", "detour": "流媒体"},
-      {"tag": "porn_dns", "type": "https", "server": "8.8.8.8", "detour": "涩涩"}
+      {"tag": "foreign_dns", "type": "https", "server": "8.8.8.8", "detour": "兜底"}
     ],
     "rules": [
       {"query_type": "HTTPS", "action": "reject"},
       {"clash_mode": "direct", "server": "domestic_dns"},
       {"clash_mode": "global", "server": "foreign_dns"},
-      {"rule_set": ["steam@cn_domain", "games-cn_domain", "game-platforms-download_domain", "entertainment-cn_domain", "apple_domain", "microsoft@cn_domain"], "server": "domestic_dns"},
-      {"rule_set": ["communication_domain"], "server": "communication_dns"},
-      {"rule_set": ["social-media-!cn_domain"], "server": "social_media_dns"},
-      {"rule_set": ["ai-!cn_domain"], "server": "ai_dns"},
-      {"rule_set": ["youtube_domain"], "server": "youtube_dns"},
-      {"rule_set": ["google_domain"], "server": "google_dns"},
-      {"rule_set": ["games-!cn_domain"], "server": "games_dns"},
-      {"rule_set": ["mega_domain", "ehentai_domain"], "server": "unlock_dns"},
-      {"rule_set": ["pixiv_domain", "dmm_domain", "dlsite_domain"], "server": "jpweb_dns"},
-      {"rule_set": ["entertainment_domain"], "server": "entertainment_dns"},
-      {"rule_set": ["porn_domain"], "server": "porn_dns"},
-      {"rule_set": ["cn_domain", "custom_direct_class"], "server": "domestic_dns"}
+      {"rule_set": ["steam@cn_domain", "games-cn_domain", "game-platforms-download_domain", "entertainment-cn_domain", "apple_domain", "microsoft@cn_domain", "cn_domain", "custom_direct_class"], "server": "domestic_dns"}
     ],
     "final": "foreign_dns",
     "independent_cache": true,
