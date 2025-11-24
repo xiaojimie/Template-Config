@@ -114,13 +114,13 @@ rules:
   - RULE-SET,youtube_domain,油管
   - RULE-SET,google_domain,谷歌
   - RULE-SET,games-!cn_domain,游戏平台
-  - DOMAIN-SUFFIX,sankakucomplex.com,特殊解锁
+  - DOMAIN-KEYWORD,sankakucomplex,特殊解锁
   - RULE-SET,mega_domain,特殊解锁
   - RULE-SET,ehentai_domain,特殊解锁
   - RULE-SET,pixiv_domain,日区网站
   - RULE-SET,dmm_domain,日区网站
   - RULE-SET,dlsite_domain,日区网站
-  - DOMAIN-SUFFIX,iwara.tv,流媒体
+  - DOMAIN-KEYWORD,iwara,流媒体
   - DOMAIN-KEYWORD,emby,流媒体
   - RULE-SET,entertainment_domain,流媒体
   - RULE-SET,porn_domain,涩涩
