@@ -66,36 +66,6 @@ dns-groups-anchor:
   foreign_dns: &foreign_dns
     - "https://8.8.8.8/dns-query#兜底"
     - "https://1.1.1.1/dns-query#兜底"
-  communication_dns: &communication_dns
-    - "https://8.8.8.8/dns-query#通讯"
-    - "https://1.1.1.1/dns-query#通讯"
-  social_media_dns: &social_media_dns
-    - "https://8.8.8.8/dns-query#社媒"
-    - "https://1.1.1.1/dns-query#社媒"
-  ai_dns: &ai_dns
-    - "https://8.8.8.8/dns-query#AI"
-    - "https://1.1.1.1/dns-query#AI"
-  youtube_dns: &youtube_dns
-    - "https://8.8.8.8/dns-query#油管"
-    - "https://1.1.1.1/dns-query#油管"
-  google_dns: &google_dns
-    - "https://8.8.8.8/dns-query#谷歌"
-    - "https://1.1.1.1/dns-query#谷歌"
-  games_dns: &games_dns
-    - "https://8.8.8.8/dns-query#游戏平台"
-    - "https://1.1.1.1/dns-query#游戏平台"
-  unlock_dns: &unlock_dns
-    - "https://8.8.8.8/dns-query#特殊解锁"
-    - "https://1.1.1.1/dns-query#特殊解锁"
-  jpweb_dns: &jpweb_dns
-    - "https://8.8.8.8/dns-query#日区网站"
-    - "https://1.1.1.1/dns-query#日区网站"
-  entertainment_dns: &entertainment_dns
-    - "https://8.8.8.8/dns-query#流媒体"
-    - "https://1.1.1.1/dns-query#流媒体"
-  porn_dns: &porn_dns
-    - "https://8.8.8.8/dns-query#涩涩"
-    - "https://1.1.1.1/dns-query#涩涩"
 dns:
   enable: true
   cache-algorithm: arc
@@ -106,18 +76,7 @@ dns:
   proxy-server-nameserver: *domestic_dns
   direct-nameserver: *domestic_dns
   nameserver-policy:
-    "rule-set:steam@cn_domain,games-cn_domain,game-platforms-download_domain,entertainment-cn_domain,apple_domain,microsoft@cn_domain": *domestic_dns
-    "rule-set:communication_domain": *communication_dns
-    "rule-set:social-media-!cn_domain": *social_media_dns
-    "rule-set:ai-!cn_domain": *ai_dns
-    "rule-set:youtube_domain": *youtube_dns
-    "rule-set:google_domain": *google_dns
-    "rule-set:games-!cn_domain": *games_dns
-    "rule-set:mega_domain,ehentai_domain": *unlock_dns
-    "rule-set:pixiv_domain,dmm_domain,dlsite_domain": *jpweb_dns
-    "rule-set:entertainment_domain": *entertainment_dns
-    "rule-set:porn_domain": *porn_dns
-    "rule-set:cn_domain,custom_direct_class": *domestic_dns
+    "rule-set:steam@cn_domain,games-cn_domain,game-platforms-download_domain,entertainment-cn_domain,apple_domain,microsoft@cn_domain,cn_domain,custom_direct_class": *domestic_dns
 proxy-groups-anchor:
   gwpr: &gwpr {type: select, proxies: [香港, 台湾, 新加坡, 日本, 美国, 直连]}
   gnpr: &gnpr {type: select, proxies: [直连, 香港, 台湾, 新加坡, 日本, 美国]}
