@@ -50,11 +50,11 @@ sniffer:
   override-destination: true
   sniff:
     HTTP:
-      ports: [1-65535]
+      ports: [80, 8080-8880]
     TLS:
-      ports: [1-65535]
+      ports: [443, 8443]
     QUIC:
-      ports: [1-65535]
+      ports: [443, 8443]
   skip-domain:
     - "Mijia Cloud"
     - "+.push.apple.com"
