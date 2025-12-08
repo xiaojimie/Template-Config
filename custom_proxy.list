@@ -1,5 +1,6 @@
 # 代理补充列表
-DOMAIN-KEYWORD,hongxingyun
 DOMAIN-KEYWORD,nexitally
+DOMAIN-KEYWORD,ikuuu
+DOMAIN-KEYWORD,hongxingyun
 IP-CIDR,8.8.8.8/32,no-resolve
 IP-CIDR,8.8.4.4/32,no-resolve
