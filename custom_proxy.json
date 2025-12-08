@@ -3,8 +3,9 @@
   "rules": [
     {
       "domain_keyword": [
-        "hongxingyun",
-        "nexitally"
+        "nexitally",
+        "ikuuu",
+        "hongxingyun"
       ],
       "ip_cidr": [
         "8.8.8.8/32",
