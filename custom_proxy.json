@@ -5,8 +5,11 @@
       "domain_keyword": [
         "nexitally",
         "ikuuu",
-        "hongxingyun",
-        "2dfan"
+        "hongxingyun"
+      ],
+      "domain_suffix": [
+        "2dfan.com",
+        "nahida.live"
       ],
       "ip_cidr": [
         "8.8.8.8/32",
