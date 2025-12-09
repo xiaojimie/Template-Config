@@ -1,12 +1,3 @@
 # 代理补充列表
-DOMAIN-KEYWORD,nexitally
-DOMAIN-KEYWORD,ikuuu
-DOMAIN-KEYWORD,hongxingyun
-DOMAIN-KEYWORD,huihui168
-DOMAIN-KEYWORD,kekehxl
-DOMAIN-SUFFIX,2dfan.com
-DOMAIN-SUFFIX,nahida.live
-DOMAIN-SUFFIX,north-plus.net
-DOMAIN-SUFFIX,white-plus.net
 IP-CIDR,8.8.8.8/32,no-resolve
 IP-CIDR,8.8.4.4/32,no-resolve
