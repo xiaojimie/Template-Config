@@ -2,19 +2,6 @@
   "version": 3,
   "rules": [
     {
-      "domain_keyword": [
-        "nexitally",
-        "ikuuu",
-        "hongxingyun",
-        "huihui168",
-        "kekehxl"
-      ],
-      "domain_suffix": [
-        "2dfan.com",
-        "nahida.live",
-        "north-plus.net",
-        "white-plus.net"
-      ],
       "ip_cidr": [
         "8.8.8.8/32",
         "8.8.4.4/32"
