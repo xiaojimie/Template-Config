@@ -85,7 +85,7 @@ proxy-groups:
   - {name: 国内, <<: *gnpr}
   - {name: 通讯, <<: *gwpr}
   - {name: 社媒, <<: *gwpr}
-  - {name: AI， <<: *gwpr}
+  - {name: AI, <<: *gwpr}
   - {name: 油管, <<: *gwpr}
   - {name: 谷歌, <<: *gwpr}
   - {name: 游戏, <<: *gwpr}
