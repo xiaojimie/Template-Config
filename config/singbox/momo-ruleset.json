@@ -39,8 +39,8 @@
     "rules": [
       {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"]},
       {"inbound": ["dns-in"], "action": "hijack-dns"},
-      {"ip_is_private": true, "outbound": "直连"},
       {"protocol": ["quic"], "action": "reject"},
+      {"ip_is_private": true, "outbound": "直连"},
       {"clash_mode": "direct", "outbound": "直连"},
       {"clash_mode": "global", "outbound": "GLOBAL"},
       {"rule_set": ["steam@cn_domain", "games-cn_domain", "game-platforms-download_domain", "entertainment-cn_domain", "apple_domain", "microsoft@cn_domain"], "outbound": "国内"},
