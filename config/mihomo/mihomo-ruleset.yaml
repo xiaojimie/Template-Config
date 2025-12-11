@@ -64,8 +64,8 @@ dns-groups-anchor:
     - "https://223.5.5.5/dns-query"
     - "https://223.6.6.6/dns-query"
   foreign_dns: &foreign_dns
-    - "https://8.8.8.8/dns-query#兜底"
-    - "https://1.1.1.1/dns-query#兜底"
+    - "https://8.8.8.8/dns-query#代理"
+    - "https://1.1.1.1/dns-query#代理"
 dns:
   enable: true
   cache-algorithm: arc
@@ -82,18 +82,18 @@ proxy-groups-anchor:
   gnpr: &gnpr {type: select, proxies: [直连, 香港, 台湾, 新加坡, 日本, 美国]}
   atgp: &atgp {type: url-test, tolerance: 50, lazy: false, hidden: true}
 proxy-groups:
-  - {name: 国内网站, <<: *gnpr}
+  - {name: 国内, <<: *gnpr}
   - {name: 通讯, <<: *gwpr}
   - {name: 社媒, <<: *gwpr}
-  - {name: AI, <<: *gwpr}
+  - {name: AI， <<: *gwpr}
   - {name: 油管, <<: *gwpr}
   - {name: 谷歌, <<: *gwpr}
-  - {name: 游戏平台, <<: *gwpr}
-  - {name: 特殊解锁, <<: *gwpr}
-  - {name: 日区网站, <<: *gwpr}
-  - {name: 流媒体, <<: *gwpr}
+  - {name: 游戏, <<: *gwpr}
+  - {name: 特殊, <<: *gwpr}
+  - {name: 娱乐, <<: *gwpr}
   - {name: 涩涩, <<: *gwpr}
-  - {name: 兜底, <<: *gwpr}
+  - {name: 代理, <<: *gwpr}
+  - {name: 兜底, <<: *gnpr}
   - {name: 香港, <<: *atgp, include-all-providers: true, filter: "(?i)(香港)"}
   - {name: 台湾, <<: *atgp, include-all-providers: true, filter: "(?i)(台湾)"}
   - {name: 新加坡, <<: *atgp, include-all-providers: true, filter: "(?i)(新加坡)"}
@@ -102,34 +102,32 @@ proxy-groups:
   - {name: 直连, type: select, proxies: [DIRECT], url: "https://wifi.vivo.com.cn/generate_204", interval: 600, lazy: false, hidden: true}
 rules:
   - RULE-SET,private_ip,直连,no-resolve
-  - RULE-SET,steam@cn_domain,国内网站
-  - RULE-SET,games-cn_domain,国内网站
-  - RULE-SET,game-platforms-download_domain,国内网站
-  - RULE-SET,entertainment-cn_domain,国内网站
-  - RULE-SET,apple_domain,国内网站
-  - RULE-SET,microsoft@cn_domain,国内网站
+  - RULE-SET,steam@cn_domain,国内
+  - RULE-SET,games-cn_domain,国内
+  - RULE-SET,game-platforms-download_domain,国内
+  - RULE-SET,entertainment-cn_domain,国内
+  - RULE-SET,apple_domain,国内
+  - RULE-SET,microsoft@cn_domain,国内
   - RULE-SET,communication_domain,通讯
   - RULE-SET,social-media-!cn_domain,社媒
   - RULE-SET,ai-!cn_domain,AI
   - RULE-SET,youtube_domain,油管
   - RULE-SET,google_domain,谷歌
-  - RULE-SET,games-!cn_domain,游戏平台
-  - DOMAIN-KEYWORD,sankakucomplex,特殊解锁
-  - RULE-SET,mega_domain,特殊解锁
-  - RULE-SET,ehentai_domain,特殊解锁
-  - RULE-SET,pixiv_domain,日区网站
-  - RULE-SET,dmm_domain,日区网站
-  - RULE-SET,dlsite_domain,日区网站
-  - DOMAIN-KEYWORD,iwara,流媒体
-  - DOMAIN-KEYWORD,emby,流媒体
-  - RULE-SET,entertainment_domain,流媒体
+  - RULE-SET,games-!cn_domain,游戏
+  - DOMAIN-KEYWORD,sankakucomplex,特殊
+  - RULE-SET,mega_domain,特殊
+  - RULE-SET,ehentai_domain,特殊
+  - DOMAIN-KEYWORD,iwara,娱乐
+  - DOMAIN-KEYWORD,emby,娱乐
+  - RULE-SET,entertainment_domain,娱乐
   - RULE-SET,porn_domain,涩涩
-  - RULE-SET,cn_domain,国内网站
-  - RULE-SET,custom_direct_class,国内网站
-  - RULE-SET,custom_proxy_class,兜底
+  - RULE-SET,gfw_domain,代理
+  - RULE-SET,geolocation-!cn_domain,代理
+  - RULE-SET,cn_domain,国内
+  - RULE-SET,custom_direct_class,国内
+  - RULE-SET,custom_proxy_class,代理
   - RULE-SET,telegram_ip,通讯
-  - RULE-SET,jp_ip,日区网站
-  - RULE-SET,cn_ip,国内网站
+  - RULE-SET,cn_ip,国内
   - MATCH,兜底
 rule-providers-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
@@ -192,18 +190,6 @@ rule-providers:
     <<: *domain
     path: ./rules/ehentai_domain.mrs
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ehentai.mrs"
-  pixiv_domain:
-    <<: *domain
-    path: ./rules/pixiv_domain.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pixiv.mrs"
-  dmm_domain:
-    <<: *domain
-    path: ./rules/dmm_domain.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/dmm.mrs"
-  dlsite_domain:
-    <<: *domain
-    path: ./rules/dlsite_domain.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/dlsite.mrs"
   entertainment_domain:
     <<: *domain
     path: ./rules/entertainment_domain.mrs
@@ -212,6 +198,14 @@ rule-providers:
     <<: *domain
     path: ./rules/porn_domain.mrs
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-porn.mrs"
+  gfw_domain:
+    <<: *domain
+    path: ./rules/gfw_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"
+  geolocation-!cn_domain:
+    <<: *domain
+    path: ./rules/geolocation-!cn_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"
   cn_domain:
     <<: *domain
     path: ./rules/cn_domain.mrs
@@ -224,10 +218,6 @@ rule-providers:
     <<: *ip
     path: ./rules/telegram_ip.mrs
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"
-  jp_ip:
-    <<: *ip
-    path: ./rules/jp_ip.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/jp.mrs"
   cn_ip:
     <<: *ip
     path: ./rules/cn_ip.mrs
