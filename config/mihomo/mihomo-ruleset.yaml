@@ -1,5 +1,5 @@
 proxy-providers-anchor:
-  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 600, lazy: false}}
+  PProviders: &PProviders {proxy: DIRECT, type: http, interval: 86400, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}}
 # 必须填入订阅链接
 proxy-providers:
   Airport1:
@@ -65,7 +65,7 @@ dns-groups-anchor:
     - "https://223.6.6.6/dns-query"
   foreign_dns: &foreign_dns
     - "https://8.8.8.8/dns-query#代理"
-    - "https://1.1.1.1/dns-query#代理"
+    - "https://8.8.4.4/dns-query#代理"
 dns:
   enable: true
   cache-algorithm: arc
@@ -80,7 +80,7 @@ dns:
 proxy-groups-anchor:
   gwpr: &gwpr {type: select, proxies: [香港, 台湾, 新加坡, 日本, 美国, 直连]}
   gnpr: &gnpr {type: select, proxies: [直连, 香港, 台湾, 新加坡, 日本, 美国]}
-  atgp: &atgp {type: url-test, tolerance: 50, lazy: false, hidden: true}
+  atgp: &atgp {type: url-test, include-all: true, tolerance: 50, interval: 300, max-failed-times: 1, hidden: true}
 proxy-groups:
   - {name: 国内, <<: *gnpr}
   - {name: 通讯, <<: *gwpr}
@@ -94,12 +94,12 @@ proxy-groups:
   - {name: 涩涩, <<: *gwpr}
   - {name: 代理, <<: *gwpr}
   - {name: 兜底, <<: *gnpr}
-  - {name: 香港, <<: *atgp, include-all-providers: true, filter: "(?i)(香港)"}
-  - {name: 台湾, <<: *atgp, include-all-providers: true, filter: "(?i)(台湾)"}
-  - {name: 新加坡, <<: *atgp, include-all-providers: true, filter: "(?i)(新加坡)"}
-  - {name: 日本, <<: *atgp, include-all-providers: true, filter: "(?i)(日本)"}
-  - {name: 美国, <<: *atgp, include-all-providers: true, filter: "(?i)(美国)"}
-  - {name: 直连, type: select, proxies: [DIRECT], url: "https://wifi.vivo.com.cn/generate_204", interval: 600, lazy: false, hidden: true}
+  - {name: 香港, <<: *atgp, filter: "(?i)(香港)"}
+  - {name: 台湾, <<: *atgp, filter: "(?i)(台湾)"}
+  - {name: 新加坡, <<: *atgp, filter: "(?i)(新加坡)"}
+  - {name: 日本, <<: *atgp, filter: "(?i)(日本)"}
+  - {name: 美国, <<: *atgp, filter: "(?i)(美国)"}
+  - {name: 直连, type: select, proxies: [DIRECT], url: "https://wifi.vivo.com.cn/generate_204", interval: 300, hidden: true}
 rules:
   - RULE-SET,private_ip,直连,no-resolve
   - RULE-SET,steam@cn_domain,国内
