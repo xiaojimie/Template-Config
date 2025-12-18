@@ -8,10 +8,11 @@ proxy-providers:
     path: ./proxies/Airport1.yaml
 global-ua: clash.meta
 mode: rule
+port: 7881
+socks-port: 7882
 mixed-port: 7890
 redir-port: 7891
 tproxy-port: 7892
-socks-port: 10808
 allow-lan: true
 bind-address: "*"
 ipv6: true
@@ -80,7 +81,7 @@ dns:
 proxy-groups-anchor:
   gwpr: &gwpr {type: select, proxies: [香港, 台湾, 新加坡, 日本, 美国, 直连]}
   gnpr: &gnpr {type: select, proxies: [直连, 香港, 台湾, 新加坡, 日本, 美国]}
-  atgp: &atgp {type: url-test, include-all: true, tolerance: 50, interval: 300, max-failed-times: 1, hidden: true}
+  atgp: &atgp {type: url-test, include-all: true, tolerance: 50, interval: 300, max-failed-times: 3, hidden: true}
 proxy-groups:
   - {name: 国内, <<: *gnpr}
   - {name: 通讯, <<: *gwpr}
@@ -114,7 +115,7 @@ rules:
   - RULE-SET,youtube_domain,油管
   - RULE-SET,google_domain,谷歌
   - RULE-SET,games-!cn_domain,游戏
-  - DOMAIN-KEYWORD,sankakucomplex,特殊
+  - DOMAIN-KEYWORD,sankaku,特殊
   - RULE-SET,mega_domain,特殊
   - RULE-SET,ehentai_domain,特殊
   - DOMAIN-KEYWORD,iwara,娱乐
@@ -124,10 +125,10 @@ rules:
   - RULE-SET,gfw_domain,代理
   - RULE-SET,geolocation-!cn_domain,代理
   - RULE-SET,cn_domain,国内
-  - RULE-SET,custom_direct_class,国内
-  - RULE-SET,custom_proxy_class,代理
   - RULE-SET,telegram_ip,通讯
   - RULE-SET,cn_ip,国内
+  - RULE-SET,custom_direct_class,国内
+  - RULE-SET,custom_proxy_class,代理
   - MATCH,兜底
 rule-providers-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
