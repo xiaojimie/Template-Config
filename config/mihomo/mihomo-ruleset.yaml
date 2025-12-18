@@ -120,8 +120,8 @@ rules:
   - RULE-SET,ehentai_domain,特殊
   - DOMAIN-KEYWORD,iwara,娱乐
   - DOMAIN-KEYWORD,emby,娱乐
-  - RULE-SET,entertainment_domain,娱乐
   - RULE-SET,porn_domain,涩涩
+  - RULE-SET,entertainment_domain,娱乐
   - RULE-SET,gfw_domain,代理
   - RULE-SET,geolocation-!cn_domain,代理
   - RULE-SET,cn_domain,国内
