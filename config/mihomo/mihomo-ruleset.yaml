@@ -84,7 +84,7 @@ proxy-groups-anchor:
   atgp: &atgp {type: url-test, include-all: true, tolerance: 50, interval: 300, max-failed-times: 3, hidden: true}
 proxy-groups:
   - {name: 国内, <<: *gnpr}
-  - {name: 通讯, <<: *gwpr}
+  - {name: 电报, <<: *gwpr}
   - {name: 社媒, <<: *gwpr}
   - {name: AI, <<: *gwpr}
   - {name: 油管, <<: *gwpr}
@@ -109,7 +109,7 @@ rules:
   - RULE-SET,entertainment-cn_domain,国内
   - RULE-SET,apple_domain,国内
   - RULE-SET,microsoft@cn_domain,国内
-  - RULE-SET,communication_domain,通讯
+  - RULE-SET,telegram_domain,电报
   - RULE-SET,social-media-!cn_domain,社媒
   - RULE-SET,ai-!cn_domain,AI
   - RULE-SET,youtube_domain,油管
@@ -125,7 +125,7 @@ rules:
   - RULE-SET,gfw_domain,代理
   - RULE-SET,geolocation-!cn_domain,代理
   - RULE-SET,cn_domain,国内
-  - RULE-SET,telegram_ip,通讯
+  - RULE-SET,telegram_ip,电报
   - RULE-SET,cn_ip,国内
   - RULE-SET,custom_direct_class,国内
   - RULE-SET,custom_proxy_class,代理
@@ -159,10 +159,10 @@ rule-providers:
     <<: *domain
     path: ./rules/microsoft@cn_domain.mrs
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@cn.mrs"
-  communication_domain:
+  telegram_domain:
     <<: *domain
-    path: ./rules/communication_domain.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-communication.mrs"
+    path: ./rules/telegram_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"
   social-media-!cn_domain:
     <<: *domain
     path: ./rules/social-media-!cn_domain.mrs
