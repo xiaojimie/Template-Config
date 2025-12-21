@@ -81,7 +81,7 @@ dns:
 proxy-groups-anchor:
   gwpr: &gwpr {type: select, proxies: [香港, 台湾, 新加坡, 日本, 美国, 直连]}
   gnpr: &gnpr {type: select, proxies: [直连, 香港, 台湾, 新加坡, 日本, 美国]}
-  atgp: &atgp {type: url-test, include-all: true, tolerance: 50, interval: 300, max-failed-times: 3, hidden: true}
+  atgp: &atgp {type: url-test, include-all: true, tolerance: 50, interval: 300, hidden: true}
 proxy-groups:
   - {name: 国内, <<: *gnpr}
   - {name: 电报, <<: *gwpr}
