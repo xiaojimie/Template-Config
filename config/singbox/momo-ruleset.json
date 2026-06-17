@@ -5,7 +5,6 @@
       {"tag": "foreign_dns", "type": "https", "server": "8.8.8.8", "detour": "DNS代理"}
     ],
     "rules": [
-      {"query_type": "HTTPS", "action": "reject"},
       {"clash_mode": "direct", "server": "domestic_dns"},
       {"clash_mode": "global", "server": "foreign_dns"},
       {"rule_set": ["steam@cn_domain", "games-cn_domain", "game-platforms-download_domain", "apple_domain", "win-update_domain", "microsoft@cn_domain", "cn_domain", "custom_direct_class"], "server": "domestic_dns"}
