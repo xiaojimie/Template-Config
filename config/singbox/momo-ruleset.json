@@ -41,7 +41,7 @@
     "rules": [
       {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"]},
       {"inbound": ["dns-in"], "action": "hijack-dns"},
-      {"type":"logical","mode":"and","rules":[{"port":[443],"network":["udp"]},{"rule_set":["cn_domain","cn_ip"],"invert":true}],"action":"reject"},
+      {"type": "logical", "mode": "and", "rules": [{"port": [443], "network": ["udp"]}, {"rule_set": ["cn_domain", "cn_ip"], "invert":true}], "action": "reject"},
       {"rule_set": ["private_ip"], "outbound": "直连"},
       {"ip_is_private": true, "outbound": "直连"},
       {"clash_mode": "direct", "outbound": "直连"},
