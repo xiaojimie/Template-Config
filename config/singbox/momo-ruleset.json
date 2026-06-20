@@ -7,6 +7,7 @@
     "rules": [
       {"clash_mode": "direct", "server": "domestic_dns"},
       {"clash_mode": "global", "server": "foreign_dns"},
+      {"domain_suffix": ".googleapis.cn", "server": "foreign_dns"},
       {"rule_set": ["steam@cn_domain", "games-cn_domain", "game-platforms-download_domain", "apple_domain", "win-update_domain", "microsoft@cn_domain", "cn_domain", "custom_direct_class"], "server": "domestic_dns"}
     ],
     "final": "foreign_dns",
@@ -19,13 +20,13 @@
     {"tag": "社媒", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "香港"},
     {"tag": "AI", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "美国"},
     {"tag": "油管", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "香港"},
-    {"tag": "谷歌", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "香港"},
+    {"tag": "谷歌", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "台湾"},
     {"tag": "游戏", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "香港"},
     {"tag": "特殊", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "美国"},
-    {"tag": "娱乐", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "台湾"},
+    {"tag": "娱乐", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "日本"},
     {"tag": "涩涩", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "台湾"},
     {"tag": "代理", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "香港"},
-    {"tag": "兜底", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "直连"},
+    {"tag": "兜底", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "香港"},
     {"tag": "DNS代理", "type": "selector", "outbounds": ["香港", "台湾", "新加坡", "日本", "美国", "冷门地区", "直连"], "default": "香港"},
     {"tag": "香港", "type": "urltest", "url": "https://www.gstatic.com/generate_204", "interval": "5m", "tolerance": 30, "outbounds": []},
     {"tag": "台湾", "type": "urltest", "url": "https://www.gstatic.com/generate_204", "interval": "5m", "tolerance": 30, "outbounds": []},
@@ -40,7 +41,7 @@
     "rules": [
       {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"]},
       {"inbound": ["dns-in"], "action": "hijack-dns"},
-      {"protocol": ["quic"], "action": "reject"},
+      {"type":"logical","mode":"and","rules":[{"port":[443],"network":["udp"]},{"rule_set":["cn_domain","cn_ip"],"invert":true}],"action":"reject"},
       {"rule_set": ["private_ip"], "outbound": "直连"},
       {"ip_is_private": true, "outbound": "直连"},
       {"clash_mode": "direct", "outbound": "直连"},
@@ -66,7 +67,6 @@
       {"rule_set": ["ehentai_domain"], "outbound": "特殊"},
       {"domain_keyword": ["iwara"], "outbound": "娱乐"},
       {"domain_keyword": ["emby"], "outbound": "娱乐"},
-      {"rule_set": ["emby_domain"], "outbound": "娱乐"},
       {"rule_set": ["porn_domain"], "outbound": "涩涩"},
       {"rule_set": ["gfw_domain"], "outbound": "代理"},
       {"rule_set": ["cn_domain"], "outbound": "国内"},
@@ -88,7 +88,6 @@
       {"tag": "games-!cn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-games-!cn.srs", "download_detour": "代理"},
       {"tag": "mega_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/mega.srs", "download_detour": "代理"},
       {"tag": "ehentai_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/ehentai.srs", "download_detour": "代理"},
-      {"tag": "emby_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-emby.srs", "download_detour": "代理"},
       {"tag": "porn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-porn.srs", "download_detour": "代理"},
       {"tag": "gfw_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/gfw.srs", "download_detour": "代理"},
       {"tag": "cn_domain", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs", "download_detour": "代理"},
@@ -104,18 +103,13 @@
   "inbounds": [
     {"tag": "dns-in", "type": "direct", "listen": "::", "listen_port": 1053},
     {"tag": "mixed-in", "type": "mixed", "listen": "::", "listen_port": 7890, "users": [{"username": "user", "password": "password"}]},
-    {"tag": "redirect-in", "type": "redirect", "listen": "::", "listen_port": 7891},
-    {"tag": "tproxy-in", "type": "tproxy", "listen": "::", "listen_port": 7892},
-    {"tag": "tun-in", "type": "tun", "interface_name": "stun0", "address": ["172.31.0.1/30", "fdfe:dcba:9876::1/126"], "auto_route": false, "auto_redirect": false}
+    {"tag": "tproxy-in", "type": "tproxy", "listen": "::", "listen_port": 7891}
   ],
   "experimental": {
     "cache_file": {"enabled": true, "path": "/etc/momo/run/cache.db", "store_rdrc": true},
     "clash_api": {
       "external_controller": "0.0.0.0:9090",
       "secret": "password",
-      "external_ui": "/etc/momo/run/ui",
-      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
-      "external_ui_download_detour": "代理",
       "default_mode": "rule"
     }
   },
