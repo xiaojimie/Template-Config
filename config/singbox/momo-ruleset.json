@@ -1,7 +1,7 @@
 {
   "dns": {
     "servers": [
-      {"tag": "domestic_dns", "type": "tls", "server": "223.5.5.5"},
+      {"tag": "domestic_dns", "type": "https", "server": "223.5.5.5"},
       {"tag": "foreign_dns", "type": "https", "server": "8.8.8.8", "detour": "DNS代理"}
     ],
     "rules": [
